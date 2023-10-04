@@ -1,17 +1,28 @@
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FaqComponentComponent } from './faq.component/faq.component.component';
-@NgModule({
+import { NavbarComponentComponent } from './layout/navbar/navbar.component/navbar.component.component';
+import { SidebarComponentComponent } from './layout/sidebar/sidebar.component/sidebar.component.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+@NgModule({ 
   declarations: [
     AppComponent,
-    FaqComponentComponent
+    NavbarComponentComponent,
+    SidebarComponentComponent,
+    LoginComponent,
+    SignupComponent
+  ],
+  exports: [
+    LoginComponent,
+    NavbarComponentComponent,
+    SidebarComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
-  ],
+  ], 
   providers: [],
   bootstrap: [AppComponent]
 })
