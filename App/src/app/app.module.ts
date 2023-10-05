@@ -7,6 +7,8 @@ import { SidebarComponentComponent } from './layout/sidebar/sidebar.component/si
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FeatureModule } from './features/feature.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -25,7 +27,7 @@ import { FeatureModule } from './features/feature.module';
     AppRoutingModule,
     FeatureModule
   ], 
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
