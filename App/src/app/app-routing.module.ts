@@ -1,16 +1,13 @@
 import { Injectable, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router'; 
 import { Title } from "@angular/platform-browser";
-import {   TitleStrategy,  RouterStateSnapshot } from "@angular/router";
+import { TitleStrategy,  RouterStateSnapshot } from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: "",  title: "App Component title" , component: LoginComponent },
   { path: "Login",  title: "App Component title" , component: LoginComponent },
-  { path: "Register",  title: "App Component title" , component: SignupComponent },
-  { path: "Home", title: "Home Title" ,component: AppComponent },
-  { path: "**",  title: "App Component title" , component: LoginComponent },
+  { path: "Register",  title: "App Component title" , component: SignupComponent }, 
 ];
 
 @Injectable()

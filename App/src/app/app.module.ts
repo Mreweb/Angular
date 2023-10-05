@@ -6,6 +6,7 @@ import { NavbarComponentComponent } from './layout/navbar/navbar.component/navba
 import { SidebarComponentComponent } from './layout/sidebar/sidebar.component/sidebar.component.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { FeatureModule } from './features/feature.module';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { SignupComponent } from './signup/signup.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FeatureModule
   ], 
   providers: [],
   bootstrap: [AppComponent]

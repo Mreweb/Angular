@@ -3070,8 +3070,7 @@ div.tagsinput div {
     border: none;
   }
 }
-
-@charset "UTF-8";
+ 
 
 /*!
  * =============================================================
@@ -3081,13 +3080,13 @@ div.tagsinput div {
  * (c) 2016 - Jeremy FAGIS <jeremy@fagis.fr> (http://fagis.fr)
  * =============================================================
  */
-@font-face {
+/*@font-face {
   font-family: dropify;
-  src: url(../fonts/dropify.eot);
+  src: url(assets/fonts/dropify.eot);
   src: url(../fonts/dropify.eot#iefix) format("embedded-opentype"), url(../fonts/dropify.woff) format("woff"), url(../fonts/dropify.ttf) format("truetype"), url(../fonts/dropify.svg#dropify) format("svg");
   font-weight: 400;
   font-style: normal
-}
+}*/
 
 .dropify-font:before,
 .dropify-wrapper .dropify-message span.file-icon:before,
@@ -10728,7 +10727,7 @@ only screen and (min-device-pixel-ratio:2) {
 .owl-theme .owl-dots .owl-dot {
   display: inline-block;
   zoom: 1;
-  *display: inline
+  display: inline;
 }
 
 .owl-theme .owl-dots .owl-dot span {
@@ -10810,13 +10809,13 @@ only screen and (min-device-pixel-ratio:2) {
   }
 }
 
-@font-face {
+/*@font-face {
   font-family: context-menu-icons;
   font-style: normal;
   font-weight: 400;
   src: url(font/context-menu-icons.eot?2wp27);
   src: url(font/context-menu-icons.eot?2wp27#iefix) format("embedded-opentype"), url(font/context-menu-icons.woff2?2wp27) format("woff2"), url(font/context-menu-icons.woff?2wp27) format("woff"), url(font/context-menu-icons.ttf?2wp27) format("truetype")
-}
+}*/
 
 .context-menu-icon-add:before {
   content: "\EA01"
