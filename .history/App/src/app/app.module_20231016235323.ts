@@ -9,10 +9,6 @@ import { SignupComponent } from './signup/signup.component';
 import { FeatureModule } from './features/feature.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
-import { BlockUIModule } from 'ng-block-ui';
-import { ToastrModule } from 'ngx-toastr'; 
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({ 
   declarations: [
@@ -30,15 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule.forRoot(),  
-    BlockUIModule.forRoot({
-      message: '...لطفا منتظر بمانید',
-      delayStart: 0,
-      delayStop: 0
-    }),
-    BrowserAnimationsModule, 
-    ToastrModule.forRoot(),  
-    HttpClientModule,
+    CoreModule.forRoot(),
     FeatureModule
   ], 
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],

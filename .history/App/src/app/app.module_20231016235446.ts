@@ -11,8 +11,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { BlockUIModule } from 'ng-block-ui';
 import { ToastrModule } from 'ngx-toastr'; 
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({ 
   declarations: [

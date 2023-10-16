@@ -23,9 +23,9 @@
       "ES2022",
       "dom"
     ],
-    "paths": {
+     "paths": {
       "@app/*": [
-        "src/app/*"
+        "app/*"
       ],
       "@assets/*": [
         "assets/*"
