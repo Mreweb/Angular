@@ -37,7 +37,7 @@ export class HandleErrorService {
         }
         else if (error.status === 400) {
             //  redirect to error page
-            this.toastr.error("خطایی در اطلاعات ارسال شده وجود دارد");
+            this.toastr.error(error.error.message);
         }
         else if (error.status === 403) {
             switch (error.error.content) {
