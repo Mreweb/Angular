@@ -4,15 +4,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';  
 import { DahsboardModule } from './dashboard/dahsboard.module';
 import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 /* custom module imports */
-
-
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,  
-    DahsboardModule,
+    DahsboardModule, 
     DashboardRoutingModule
   ],
   providers: [],

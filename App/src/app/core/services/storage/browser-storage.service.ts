@@ -32,8 +32,8 @@ export class BrowserStorageService {
     return  result;
   } 
   getLocal(key: string): any {
-    const data = window.localStorage.getItem(key) || "";
-    return JSON.parse(data);
+    const data = window.localStorage.getItem(key) || undefined;
+    return data;
   }
 
   setLocal(key: string, value: any): void {

@@ -11,8 +11,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { BlockUIModule } from 'ng-block-ui';
 import { ToastrModule } from 'ngx-toastr'; 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpInterceptorService } from './core/interceptor/interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomerService } from './services/ui/cutsomer.service';
 
 @NgModule({ 
   declarations: [
@@ -39,9 +42,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule, 
     ToastrModule.forRoot(),  
     HttpClientModule,
+    ReactiveFormsModule,
     FeatureModule
   ], 
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+    CustomerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: LocationStrategy, 
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

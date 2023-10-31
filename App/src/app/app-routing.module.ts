@@ -5,9 +5,9 @@ import { TitleStrategy,  RouterStateSnapshot } from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
-  { path: "",  title: "App Component title" , component: LoginComponent },
-  { path: "Login",  title: "App Component title" , component: LoginComponent },
-  { path: "Register",  title: "App Component title" , component: SignupComponent }, 
+  { path: "",  title: "ورود به سامانه" , component: LoginComponent },
+  { path: "Login",  title: "ورود به سامانه" , component: LoginComponent },
+  { path: "Register",  title: "ثبت نام" , component: SignupComponent }, 
 ];
 
 @Injectable()

@@ -33,6 +33,8 @@
               "src/assets/vendors/iconfonts/font-awesome/css/all.min.css",
               "src/assets/vendors/iconfonts/font-awesome/css/all.min.css",
               "src/assets/vendors/iconfonts/font-awesome/css/all.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
             ],
             "scripts": [

@@ -7,10 +7,11 @@
               <a routerLink="">
                 <div class="brand-logo d-flex justify-content-center">
                   <img src="assets/images/logo.png" alt="logo">
+                  <img src="assets/images/nimad.png" alt="logo"> 
                 </div>
               </a>
               <h4>صفحه ورود</h4>
-              <form class="pt-3">
+              <form class="pt-3" [formGroup]="pageForm">
                 <div class="form-group">
                   <label for="exampleInputEmail">نام کاربری</label>
                   <div class="input-group">
@@ -19,7 +20,7 @@
                         <i class="fa fa-user text-primary"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail"
+                    <input formControlName="userName" type="text" class="form-control form-control-lg border-left-0" 
                       placeholder="نام کاربری خود را وارد کنید">
                   </div>
                 </div>
@@ -31,26 +32,31 @@
                         <i class="fa fa-lock text-primary"></i>
                       </span>
                     </div>
-                    <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword"
+                    <input formControlName="password" type="password" class="form-control form-control-lg border-left-0" 
                       placeholder="رمز عبور خود را وارد کنید">
                   </div>
                 </div>
-                <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      مرا به خاطر بسپار
-                    </label>
+                <div class="form-group">
+                  <label for="exampleInputPassword">کد امنیتی</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="fa fa-code text-primary"></i>
+                      </span>
+                    </div>
+                    <input formControlName="captchaCode" type="password" class="form-control form-control-lg border-left-0" 
+                      placeholder="کد امنیتی را وارد کنید">
+                      <i style="margin:15px;cursor: pointer;" (click)="getCaptcha()" class="fa fa-redo"></i>
+                      <img [src]="captchaSrc" style="width: 100px;" />
                   </div>
-                  <a href="#" class="auth-link text-black">رمز عبور خود را فراموش کرده اید ؟</a>
                 </div>
+                
                 <div class="my-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                    href="../../index.html">ورود</a>
+                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" (click)="doRegister()">ورود</a>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
+                <!-- <div class="text-center mt-4 font-weight-light">
                   حساب کاربری ندارید ؟ <a routerLink="/Register" class="text-primary">ثبت نام</a>
-                </div>
+                </div> -->
                 <div class="text-center mt-4 font-weight-light">
                  <a routerLink="/Dashboard/Home" class="text-primary">داشبورد</a>
                 </div>

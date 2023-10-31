@@ -105,10 +105,10 @@ export class HttpRestService {
       opt = { params: params, headers: header };
     }
     else {
-      let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      opt = { params: params, headers: headers };
+      let headers = new HttpHeaders({  'Content-Type': 'application/json' }); 
+      opt = { params: params, headers: headers, withCredentials: true , credentials: "include"  };
     }
-    return this.httpClient.get(this.apiUrlSetting.getQueryApiUrl(this.controller), opt)
+    return this.httpClient.get(this.apiUrlSetting.getQueryApiUrl(this.controller), opt  )
   }
   createService(body: any, header: any = null): Observable<any> {
     if (header === null) {
@@ -117,7 +117,6 @@ export class HttpRestService {
     }
     return this.httpClient.post(this.apiUrlSetting.getQueryApiUrl(this.controller), body, header)
   }
-
   createServiceWithParams(params: HttpParams): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let apiUrl = this.apiUrlSetting.getQueryApiUrl(this.controller) + "?";
@@ -130,7 +129,6 @@ export class HttpRestService {
     }
     return this.httpClient.post(apiUrl, null, { headers: headers });
   }
-
   updateService(body: any, header: any = null): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.put(this.apiUrlSetting.getQueryApiUrl(this.controller), body, { headers: headers })
@@ -147,17 +145,14 @@ export class HttpRestService {
     }
     return this.httpClient.put(apiUrl, null, { headers: headers })
   }
-
   patchService(url: string, body: any): Observable<any> {
     return this.httpClient
       .patch(this.apiUrlSetting.getQueryApiUrl(this.controller), body)
   }
-
   deleteService(id: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.httpClient.delete(this.apiUrlSetting.getQueryApiUrl(this.controller) + '/' + id, { headers: headers })
   }
-
   deleteWhitService(param: any | null): Observable<any> {
     let params: HttpParams = new HttpParams();
     if (param !== null) {
@@ -170,7 +165,6 @@ export class HttpRestService {
     }
     return this.httpClient.delete(this.apiUrlSetting.getQueryApiUrl(this.controller), { params: params })
   }
-
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'ارتباط با سرور با مشکل مواجه شده است';

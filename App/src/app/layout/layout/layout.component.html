@@ -3,8 +3,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo"><img src="assets/images/logo.png" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini"><img src="assets/images/logo.png" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -25,29 +25,7 @@
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown d-none d-lg-flex">
-            <div class="nav-link">
-              <span class="dropdown-toggle btn btn-outline-dark" id="languageDropdown"
-                data-toggle="dropdown">فارسی</span>
-              <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
-                <a class="dropdown-item font-weight-medium" href="#">
-                  انگلیسی
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item font-weight-medium" href="#">
-                  اسپانیایی
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item font-weight-medium" href="#">
-                  ترکی استانبولی
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item font-weight-medium" href="#">
-                  عربی
-                </a>
-              </div>
-            </div>
-          </li>
+ 
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
               data-toggle="dropdown">
@@ -121,7 +99,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                  <img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-medium">رضا افشار
@@ -135,7 +113,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+                  <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-medium">پریسا توکلی
@@ -149,7 +127,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                  <img src="assets/images/faces/face3.jpg" alt="image" class="profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-medium"> امیر
@@ -164,7 +142,7 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/faces/face5.jpg" alt="profile" />
+              <img src="assets/images/faces/face5.jpg" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -172,14 +150,14 @@
                 تنظیمات
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item">
+              <a (click)="logOut()" class="dropdown-item">
                 <i class="fas fa-power-off text-primary"></i>
                 خروج
               </a>
             </div>
           </li>
           <li class="nav-item nav-settings d-none d-lg-block">
-            <a class="nav-link" href="#">
+            <a class="nav-link">
               <i class="fas fa-ellipsis-h"></i>
             </a>
           </li>
@@ -314,7 +292,7 @@
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>رضا کریمی</p>
                   <p>آنلاین</p>
@@ -322,7 +300,7 @@
                 <small class="text-muted my-auto">19 دقیقه قبل</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
                     <p>پریسا</p>
@@ -333,7 +311,7 @@
                 <small class="text-muted my-auto">23 دقیقه قبل</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="assets/images/faces/face3.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>امیر صبوری</p>
                   <p>آنلاین</p>
@@ -341,7 +319,7 @@
                 <small class="text-muted my-auto">14 دقیقه قبل</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="assets/images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <p>علیرضا مغانلو</p>
                   <p>خیلی وقت پیش</p>
@@ -349,7 +327,7 @@
                 <small class="text-muted my-auto">23 دقیقه قبل</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="assets/images/faces/face5.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>نیلوفر غفاری</p>
                   <p>آنلاین</p>
@@ -357,7 +335,7 @@
                 <small class="text-muted my-auto">53 دقیقه قبل</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="assets/images/faces/face6.jpg" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>مهدی نادری</p>
                   <p>آنلاین</p>
@@ -376,7 +354,7 @@
           <li class="nav-item nav-profile">
             <div class="nav-link">
               <div class="profile-image">
-                <img src="images/faces/face5.jpg" alt="image" />
+                <img src="assets/images/faces/face5.jpg" alt="image" />
               </div>
               <div class="profile-name">
                 <p class="name">
@@ -395,295 +373,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/widgets.html">
-              <i class="fa fa-puzzle-piece menu-icon"></i>
-              <span class="menu-title">ویجت ها</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false"
               aria-controls="page-layouts">
               <i class="fab fa-trello menu-icon"></i>
-              <span class="menu-title">لایه های صفحه</span>
+              <span class="menu-title">مغایرت گیری</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="page-layouts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="pages/layout/boxed-layout.html">حالت
-                    باکس</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/layout/rtl-layout.html">نسخه LTR</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link"
-                    href="pages/layout/horizontal-menu.html">منوی افقی</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item d-none d-lg-block">
-            <a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false"
-              aria-controls="sidebar-layouts">
-              <i class="fas fa-columns menu-icon"></i>
-              <span class="menu-title">لایه های سایدبار</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="sidebar-layouts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/layout/compact-menu.html">منوی فشرده</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-collapsed.html">منوی آیکون</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-hidden.html">سایدبار مخفی</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-hidden-overlay.html">سایدبار
-                    جمع</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/layout/sidebar-fixed.html">سایدبار ثابت</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="far fa-compass menu-icon"></i>
-              <span class="menu-title">عناصر طراحی UI پایه</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/accordions.html">آکاردئون</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">دکمه ها</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/badges.html">نشان ها</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/breadcrumbs.html">راهنمای مسیر</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">فهرست کشویی</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/modals.html">مُدال ها</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/progress.html">نوار پیشرفت</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/pagination.html">صفحه بندی</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/tabs.html">تب ها</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">تایپوگرافی</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/tooltips.html">تولتیپ</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false"
-              aria-controls="ui-advanced">
-              <i class="fas fa-clipboard-list menu-icon"></i>
-              <span class="menu-title">عناصر طراحی پیشرفته</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-advanced">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dragula.html">دراگولا ( کشیدن و رها
-                    کردن )</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/clipboard.html">کلیپ بورد</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/context-menu.html">منوی متن</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/slider.html">اسلایدر نواری</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/carousel.html">اسلایدر تصاویر
-                    کاروسل</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/colcade.html">افزونه Colcade</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/loaders.html">لودینگ</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
-              aria-controls="form-elements">
-              <i class="fab fa-wpforms menu-icon"></i>
-              <span class="menu-title">عناصر طراحی فرم</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">عناصر طراحی پایه</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/advanced_elements.html">عناصر طراحی
-                    پیشرفته</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/validation.html">اعتبار سنجی</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/wizard.html">فرم حرفه ای ( مرحله ای )</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/dropify.html">بارگذاری فایل dropify</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false" aria-controls="editors">
-              <i class="fas fa-pen-square menu-icon"></i>
-              <span class="menu-title">ویرایشگر ها</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="editors">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/text_editor.html">ویرایشگر متن</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/ckeditor.html">ویرایشگر متن CkEditor</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="pages/forms/code_editor.html">ویرایشگر کد</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="fas fa-chart-pie menu-icon"></i>
-              <span class="menu-title">نمودار ها</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">نمودار ChartJs</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/morris.html">نمودار Morris</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/highcharts.html">نمودار Highcharts</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/flot-chart.html">نمودار Flot</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/google-charts.html">نمودار Google
-                    charts</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/sparkline.html">نمودار Sparkline js</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/c3.html">نمودار C3</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartist.html">نمودار Chartists</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/justGage.html">نمودار JustGage</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="fas fa-table menu-icon"></i>
-              <span class="menu-title">جداول</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tables">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">جدول پایه</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/data-table.html">جدول داده</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/js-grid.html">جدول Js-grid</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/sortable-table.html">جدول با قابلیت مرتب
-                    شدن</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/popups.html">
-              <i class="fas fa-minus-square menu-icon"></i>
-              <span class="menu-title">پاپ آپ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/notifications.html">
-              <i class="fas fa-bell menu-icon"></i>
-              <span class="menu-title">اعلان ها</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="fa fa-stop-circle menu-icon"></i>
-              <span class="menu-title">آیکون ها</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="icons">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/flag-icons.html">آیکون های پرچم</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">آیکون های فونت آوسام</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/simple-line-icon.html">آیکون های Simple
-                    line</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/themify.html">آیکون های Themify</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#maps" aria-expanded="false" aria-controls="maps">
-              <i class="fas fa-map-marker-alt menu-icon"></i>
-              <span class="menu-title">نقشه ها</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="maps">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/maps/mapeal.html">نقشه Mapeal</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/maps/vector-map.html">نقشه برداری</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/maps/google-maps.html">نقشه گوگل</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="fas fa-window-restore menu-icon"></i>
-              <span class="menu-title">صفحات کاربر</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> ورود </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> ورود 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> ثبت نام </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> ثبت نام 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> صفحه قفل </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-              <i class="fas fa-exclamation-circle menu-icon"></i>
-              <span class="menu-title">صفحات خطا</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="error">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-403.html"> 403 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-503.html"> 503 </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false"
-              aria-controls="general-pages">
-              <i class="fas fa-file menu-icon"></i>
-              <span class="menu-title">صفحات عمومی</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> صفحه خالی </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/profile.html"> پروفایل </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/faq.html"> سوالات متداول </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/faq-2.html"> سوالات متداول 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/news-grid.html"> اخبار </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/timeline.html"> تایم لاین </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/search-results.html"> نتایج جستجو </a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/portfolio.html"> نمونه کار </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#apps" aria-expanded="false" aria-controls="apps">
-              <i class="fas fa-briefcase menu-icon"></i>
-              <span class="menu-title">برنامه ها</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="apps">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/apps/email.html"> ایمیل </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/apps/calendar.html"> تقویم رویداد میلادی </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/apps/calendar2.html"> تقویم رویداد میلادی 2 </a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/apps/calendar-jalali.html"> تقویم رویداد شمسی </a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/apps/todo.html"> لیست انجام </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/apps/gallery.html"> گالری </a></li>
-              </ul>`
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#e-commerce" aria-expanded="false"
-              aria-controls="e-commerce">
-              <i class="fas fa-shopping-cart menu-icon"></i>
-              <span class="menu-title">فروشگاه</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="e-commerce">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/invoice.html"> فاکتور </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/pricing-table.html"> جدول فروش </a>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/orders.html"> سفارشات </a></li>
+                <li class="nav-item"> <a class="nav-link" >تاریخه مغایرت گیری ها</a></li>
+                <li class="nav-item"> <a class="nav-link" >مغایرت گیری جدید</a></li>
               </ul>
             </div>
           </li>

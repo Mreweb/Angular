@@ -27,7 +27,7 @@ export abstract class AdapterService<T> {
     return this.rest.createServiceWithParams(data);
   }
 
-  put(data: any , lastPart: any=null): Observable<any> {
+  put(data: any, header: any = null , lastPart: any=null): Observable<any> {
     this.rest.setController(this.controller+lastPart);
     return this.rest.updateService(data);
   }

@@ -1,0 +1,12 @@
+.auth .brand-logo img {
+    width: 150px;
+    border: 1px dashed #ccc;
+    margin: 10px;
+    border-radius: 8px;
+    padding: 16px;
+}
+.auth form .auth-form-btn {
+    height: 50px;
+    line-height: 1;
+    color: #fff;
+}
