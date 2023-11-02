@@ -17,16 +17,16 @@ export class HttpInterceptorService implements HttpInterceptor {
 
 
         return new Observable((observer) => {
-            next.handle(clonedRequest).subscribe(
-                (res: any) => {
+            next.handle(clonedRequest).subscribe({
+                next: (res: any) => {
                     if (res instanceof HttpResponse) {
                         observer.next(res);
                     }
                 },
-                (err: HttpErrorResponse) => {
+                error: (err: HttpErrorResponse) => {
                     this.error.handleError(err);
                 }
-            );
+        });
         });
     }
 } 

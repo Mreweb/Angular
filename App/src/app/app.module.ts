@@ -1,4 +1,4 @@
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,14 +10,14 @@ import { FeatureModule } from './features/feature.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { BlockUIModule } from 'ng-block-ui';
-import { ToastrModule } from 'ngx-toastr'; 
+import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptorService } from './core/interceptor/interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from './services/ui/cutsomer.service';
 
-@NgModule({ 
+@NgModule({
   declarations: [
     AppComponent,
     NavbarComponentComponent,
@@ -25,7 +25,7 @@ import { CustomerService } from './services/ui/cutsomer.service';
     LoginComponent,
     SignupComponent
   ],
-  exports: [
+  exports: [ 
     LoginComponent,
     NavbarComponentComponent,
     SidebarComponentComponent
@@ -33,18 +33,18 @@ import { CustomerService } from './services/ui/cutsomer.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule.forRoot(),  
+    CoreModule.forRoot(),
     BlockUIModule.forRoot({
       message: '...لطفا منتظر بمانید',
       delayStart: 0,
       delayStop: 0
     }),
-    BrowserAnimationsModule, 
-    ToastrModule.forRoot(),  
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
     FeatureModule
-  ], 
+  ],
   providers: [
     CustomerService,
     {
@@ -53,7 +53,7 @@ import { CustomerService } from './services/ui/cutsomer.service';
       multi: true
     },
     {
-      provide: LocationStrategy, 
+      provide: LocationStrategy,
       useClass: HashLocationStrategy
     }
   ],

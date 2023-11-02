@@ -381,8 +381,8 @@
             </a>
             <div class="collapse" id="page-layouts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" >تاریخه مغایرت گیری ها</a></li>
-                <li class="nav-item"> <a class="nav-link" >مغایرت گیری جدید</a></li>
+                <li class="nav-item" routerLink="/Dashboard/ConflictList"> <a class="nav-link" >تاریخه مغایرت گیری ها</a></li>
+                <li class="nav-item" routerLink="/Dashboard/ConflictList/Add"> <a class="nav-link">افزودن مغایرت گیری</a></li>
               </ul>
             </div>
           </li>
@@ -407,14 +407,5 @@
     <!-- page-body-wrapper ends -->
   </div>
 
-  <script>
-    jQuery(document).ready(function () {
-      jQuery("#taghvim").persianDatepicker({
-        altFormat: "X",
-        format: "D MMMM YYYY",
-        observer: true
-      });
-    });
-  </script>
 
 

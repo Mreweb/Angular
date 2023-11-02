@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
    }*/
    // for any other condition, navigate to the forbidden route.
 
-   if(localStorage.getItem("clientId") == undefined){
+   if(localStorage.getItem("userInfo") == undefined){
     this.router.navigateByUrl('/Forbidden'); 
     return false;
    } else{

@@ -30,9 +30,6 @@
               "src/assets/vendors/css/vendor.bundle.addons.css",
               "src/assets/css/style.css",
               "src/assets/css/persian-datepicker-0.4.5.min.css",
-              "src/assets/vendors/iconfonts/font-awesome/css/all.min.css",
-              "src/assets/vendors/iconfonts/font-awesome/css/all.min.css",
-              "src/assets/vendors/iconfonts/font-awesome/css/all.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "@ng-select/ng-select/themes/default.theme.css",
               "src/styles.css"
@@ -119,5 +116,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

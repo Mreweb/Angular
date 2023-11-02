@@ -1,0 +1,52 @@
+<div class="row page-table">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col-sm-12 col-md-4">
+                        <h4 class="card-title">فهرست مغایرت گیری ها</h4>
+                    </div>
+                    <div class="col-sm-12 col-md-8 text-left">
+                        <div class="dataTables_filter">
+                            <label>
+                                عنوان
+                                <input type="text" class="form-control" placeholder="جستجو ...">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ngx-skeleton-loader count="12" appearance="line" *ngIf="!dataLoaded"></ngx-skeleton-loader>
+                        <div class="table-responsive">
+                            <table  *ngIf="dataLoaded" class="table table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ردیف</th>
+                                        <th>عنوان مغایرت گیری</th>
+                                        <th>تاریخ ثبت</th>
+                                        <th>جزئیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of ConflictList | paginate: { itemsPerPage: 10, currentPage: pageNumber, totalItems: ConflictList?.length } ;let i = index;">
+                                        <td>{{ i+1 }}</td>
+                                        <td>{{ item.title }}</td>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.id }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-12">
+                                <pagination-controls previousLabel="قبلی" nextLabel="بعدی"
+                                    (pageChange)="pageNumber = $event; getConflictList();"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 

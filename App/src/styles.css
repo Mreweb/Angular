@@ -1,1 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
+
+.ngx-pagination {
+    margin: 0 !important;
+    padding: 10px 0 !important;
+}
+.ngx-pagination li {
+    margin-right: 0.0625rem;
+    border-radius: 0;
+    padding: 2px !important;
+    border: 1px solid #ebe4e4;
+    margin: 0 2px;
+    min-width: 40px;
+    text-align: center;
+}
+.ngx-pagination a, .ngx-pagination button {
+    cursor: pointer;
+    text-decoration: none;
+}
+.card .card-title {
+    font-weight: 900;
+    color: #000000;
+    font-weight: normal;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    font-size: 1.125rem !important;
+    padding: 16px !important;
+}
+
+.dataTables_filter{
+    direction: rtl;
+    text-align: justify;
+    float: left;
+    margin-right: 8px; 
+    font-size: 12px;
+}
+.dataTables_filter .form-control{
+    padding: 8px !important;
+}
+.table thead th {
+    background: #ececec;
+}
+
+
+
+.table.text-center th {
+    text-align: center !important;
+}

@@ -1,0 +1,7 @@
+.dropify-wrapper .dropify-message p.dropify-error {
+    color: #06cb0c;
+    font-weight: 700;
+    display: block; 
+    font-size: 20px;
+    margin: 20px 0;
+}

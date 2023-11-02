@@ -6,6 +6,6 @@ import { HttpRestService } from '@app/core/services/http-rest/http-rest.service'
 export class CustomerService extends AdapterService<any>{
 
   constructor(protected override rest: HttpRestService) {
-    super(rest, 'auth/v1');
+    super(rest, '');
   } 
 }
