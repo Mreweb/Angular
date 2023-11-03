@@ -23,7 +23,7 @@ export class ConflictAddComponent implements OnInit {
     private toastr: ToastrService) { }
 
   @BlockUI() blockUI: NgBlockUI;
-  formStep: number = 0;
+  formStep: number = 1;
 
   addConflictTitleForm = new FormGroup({
     newConflictName: new FormControl('', [Validators.required])
@@ -39,10 +39,12 @@ export class ConflictAddComponent implements OnInit {
   bankFileServerColumns: any;
   companyFileServerColumns: any;
   conflictColumns = new FormGroup({
+    BankSheet: new FormControl('', [Validators.required]),
     BankTitle: new FormControl('', [Validators.required]),
     BankPrice: new FormControl('', [Validators.required]),
     BankTrackingCode: new FormControl('', [Validators.required]),
     BankDate: new FormControl('', [Validators.required]),
+    CompanySheet: new FormControl('', [Validators.required]),
     CompanyTitle: new FormControl('', [Validators.required]),
     CompanyPrice: new FormControl('', [Validators.required]),
     CompanyTrackingCode: new FormControl('', [Validators.required]),
@@ -53,6 +55,18 @@ export class ConflictAddComponent implements OnInit {
   ngOnInit(): void {
     let date1 = this.persianCalendarService.PersianCalendar("2000-10-31T01:30:00.000-05:00");
     console.log(date1);
+  }
+
+  resetForm(){
+    /*this.formStep = 1;
+    this.addConflictTitleForm.reset();
+    this.conflictColumns.reset();
+    this.addConflictTitleForm.reset();
+    this.addConflictTitleForm.reset();*/
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 
   onFileChange(event: any, type = '') {
@@ -112,6 +126,8 @@ export class ConflictAddComponent implements OnInit {
 
     this.blockUI.start();
     this.formStep = 3;
+
+    
     this.bankFileServerColumns = [
       { 'id': '10', 'name': 'توضیحات' },
       { 'id': '11', 'name': 'مبلغ' },
@@ -119,7 +135,7 @@ export class ConflictAddComponent implements OnInit {
       { 'id': '13', 'name': 'شناسه کاربر' },
       { 'id': '14', 'name': 'تاریخ' },
       { 'id': '15', 'name': 'تلفن همراه' },
-    ]
+    ];
     this.companyFileServerColumns = [
       { 'id': '20', 'name': 'توضیحات' },
       { 'id': '21', 'name': 'مبلغ' },

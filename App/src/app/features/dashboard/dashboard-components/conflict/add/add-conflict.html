@@ -3,17 +3,22 @@
     <div class="col-lg-12 grid-margin ">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-custom">
-                <li class="breadcrumb-item" [class.active]="formStep == 1"><a href="#">ثبت عنوان مغایرت گیری</a></li>
-                <li class="breadcrumb-item" [class.active]="formStep == 2"><a href="#">انتخاب فایل های اکسل</a></li>
-                <li class="breadcrumb-item" [class.active]="formStep == 3"><a href="#">انتخاب ستون های همتا</a></li>
-                <li class="breadcrumb-item" [class.active]="formStep == 4"><span>مغایرت گیری</span></li>
+                <li class="breadcrumb-item" [class.active]="formStep > 1">ثبت عنوان مغایرت گیری</li>
+                <li class="breadcrumb-item" [class.active]="formStep > 2">انتخاب فایل های اکسل</li>
+                <li class="breadcrumb-item" [class.active]="formStep > 3">انتخاب ستون های همتا</li>
+                <li class="breadcrumb-item" [class.active]="formStep > 4">مغایرت گیری</li>
+                <li class="breadcrumb-item"></li>
             </ol>
         </nav>
-        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-        [style.width]=" (formStep*25)+'%' "
-         role="progressbar" style="height:40px;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+        <div
+        *ngIf="formStep > 1"
+        class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+            [style.width]="((formStep-1)*25)+'%'" role="progressbar" style="height:40px;" aria-valuenow="90"
+            aria-valuemin="0" aria-valuemax="100">
+            {{ (formStep-1)*25 }} %
+        </div>
     </div>
-    
+
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -96,6 +101,15 @@
                     <div class="row">
                         <div class="col-lg-6 grid-margin">
                             <h1 class="alert alert-info text-center">انتخاب ستون های اکسل بانک</h1>
+
+                            <label>انتخاب صفحه اکسل</label>
+                            <select class="form-control" formControlName="BankSheet">
+                                <option value="">-- انتخاب کنید --</option>
+                                <option *ngFor="let item of bankFileServerColumns;" value="item.id">
+                                    {{ item.name }}
+                                </option>
+                            </select>
+                            <p>&nbsp;</p>
                             <table class="table table-hover table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
@@ -153,6 +167,14 @@
                         </div>
                         <div class="col-lg-6 grid-margin">
                             <h1 class="alert alert-info text-center">انتخاب ستون های اکسل حسابداری</h1>
+                            <label>انتخاب صفحه اکسل</label>
+                            <select class="form-control" formControlName="CompanySheet">
+                                <option value="">-- انتخاب کنید --</option>
+                                <option *ngFor="let item of bankFileServerColumns;" value="item.id">
+                                    {{ item.name }}
+                                </option>
+                            </select>
+                            <p>&nbsp;</p>
                             <table class="table table-hover table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
@@ -166,7 +188,7 @@
                                         <td>
                                             <select class="form-control" formControlName="CompanyTitle">
                                                 <option value="">-- انتخاب کنید --</option>
-                                                <option *ngFor="let item of bankFileServerColumns;" value="item.id">
+                                                <option *ngFor="let item of companyFileServerColumns;" value="item.id">
                                                     {{ item.name }}
                                                 </option>
                                             </select>
@@ -177,7 +199,7 @@
                                         <td>
                                             <select class="form-control" formControlName="CompanyPrice">
                                                 <option value="">-- انتخاب کنید --</option>
-                                                <option *ngFor="let item of bankFileServerColumns;" value="item.id">
+                                                <option *ngFor="let item of companyFileServerColumns;" value="item.id">
                                                     {{ item.name }}
                                                 </option>
                                             </select>
@@ -188,7 +210,7 @@
                                         <td>
                                             <select class="form-control" formControlName="CompanyTrackingCode">
                                                 <option value="">-- انتخاب کنید --</option>
-                                                <option *ngFor="let item of bankFileServerColumns;" value="item.id">
+                                                <option *ngFor="let item of companyFileServerColumns;" value="item.id">
                                                     {{ item.name }}
                                                 </option>
                                             </select>
@@ -199,7 +221,7 @@
                                         <td>
                                             <select class="form-control" formControlName="CompanyDate">
                                                 <option value="">-- انتخاب کنید --</option>
-                                                <option *ngFor="let item of bankFileServerColumns;" value="item.id">
+                                                <option *ngFor="let item of companyFileServerColumns;" value="item.id">
                                                     {{ item.name }}
                                                 </option>
                                             </select>
@@ -216,7 +238,9 @@
                 </form>
 
 
-
+                <div class="col-12 text-left">
+                    <button (click)="resetForm()" class="btn btn-default">بازنشانی از ابتدا</button>
+                </div>
             </div>
         </div>
     </div>
