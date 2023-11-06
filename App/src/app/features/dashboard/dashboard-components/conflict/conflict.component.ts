@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from '@app/services/ui/cutsomer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrowserStorageService } from '@app/core/services/storage/browser-storage.service';
+import { PersianCalendarService } from '@app/core/services/calendar/persian.calendar.service';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +18,15 @@ export class ConflictListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private CustomerService: CustomerService,
+    private persianCalendarService: PersianCalendarService,
     private storage: BrowserStorageService,
     private toastr: ToastrService) { }
 
   @BlockUI() blockUI: NgBlockUI;
   captchaSrc = "";
-  pageNumber: number = 1;
-  pageSize: number = 1;
-  total: number;
+  pageNumber: any = 1;
+  pageSize: any = 10;
+  total: any;
   loading: boolean;
   config: any;
   ConflictList: any = [];
@@ -32,10 +34,10 @@ export class ConflictListComponent implements OnInit {
 
 
   pageForm = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    captchaCode: new FormControl('', [Validators.required]),
-    captchaId: new FormControl('', [Validators.required])
+    Page: new FormControl('', [Validators.required]),
+    PageSize: new FormControl('', [Validators.required]),
+    From: new FormControl('', [Validators.required]),
+    To: new FormControl('', [Validators.required])
   });
 
   ngOnInit(): void {
@@ -43,14 +45,23 @@ export class ConflictListComponent implements OnInit {
   }
   getConflictList() {
     this.dataLoaded = false;
-    this.CustomerService.get(null, null, "posts?pageNumber=" + this.pageNumber).subscribe({
+    this.pageForm.controls['Page'].setValue(this.pageNumber);
+    this.pageForm.controls['PageSize'].setValue(this.pageSize);
+    this.CustomerService.get(this.pageForm.value, null, "discrepancies").subscribe({
       next: (data: any) => {
-        this.ConflictList = data;
+        for(let i=0;i<data.content.count;i++){
+          data.content.items[i].creationDate = this.persianCalendarService.PersianCalendar(data.content.items[i].creationDate);
+        }
+        this.ConflictList = data.content.items;
+        this.total = data.content.count;
         this.dataLoaded = true;
       },
-      error: ()=>{ }
-    }
-    );
+      error: () => { }
+    });
+  }
+
+  conflictDetail(id:any){
+    this.router.navigateByUrl('Dashboard/');
   }
 
 

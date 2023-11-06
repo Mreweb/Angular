@@ -1,0 +1,16 @@
+.dropify-wrapper .dropify-message p.dropify-error {
+    color: #06cb0c;
+    font-weight: 700;
+    display: block; 
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item.active {
+    font-size: 0.8125rem;
+    background: #29c281;
+    padding: 0.56rem 10px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+}

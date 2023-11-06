@@ -8,6 +8,7 @@ import { HomeComponent } from './dashboard-components/home/home.component';
 import { ProfileComponent } from './dashboard-components/profile/profile.component';
 import { ConflictListComponent } from './dashboard-components/conflict/conflict.component';
 import { ConflictAddComponent } from './dashboard-components/conflict/add/add-conflict';
+import { ConflictDetailComponent } from './dashboard-components/conflict/detail/detail-conflict';
 const routes: Routes = [
   {
     path: '',
@@ -20,11 +21,9 @@ const routes: Routes = [
         children: [
           { path: 'Home', component: HomeComponent, title: "فهرست سازمان" },
           { path: 'Profile', component: ProfileComponent, title: "پروفایل کاربری" },
-
           { path: 'ConflictList', component: ConflictListComponent, title: "فهرست مغایرت گیری"},
-          { path: 'ConflictList/Add', component: ConflictAddComponent, title: "افزودن مغایرت گیری" }
-
-          
+          { path: 'ConflictList/Add', component: ConflictAddComponent, title: "افزودن مغایرت گیری" },
+          { path: 'ConflictDetail/:id', component: ConflictDetailComponent, title: ""}    
         ]
       }
     ]

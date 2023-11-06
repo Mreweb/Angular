@@ -22,12 +22,13 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
+
                 <form *ngIf="formStep == 1" [formGroup]="addConflictTitleForm" class="forms-sample">
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="newConflictName">عنوان مغایرت گیری</label>
-                            <input type="text" class="form-control" formControlName="newConflictName"
-                                id="newConflictName" placeholder="عنوانی برای وارد کنید">
+                            <label for="title">عنوان مغایرت گیری</label>
+                            <input type="text" class="form-control" formControlName="title"
+                                id="title" placeholder="عنوانی برای وارد کنید">
                         </div>
                     </div>
                     <button type="submit" (click)="doAddNewConflictTitle()" class="btn btn-primary mr-2">ثبت و
@@ -101,7 +102,6 @@
                     <div class="row">
                         <div class="col-lg-6 grid-margin">
                             <h1 class="alert alert-info text-center">انتخاب ستون های اکسل بانک</h1>
-
                             <label>انتخاب صفحه اکسل</label>
                             <select class="form-control" formControlName="BankSheet">
                                 <option value="">-- انتخاب کنید --</option>
@@ -237,10 +237,10 @@
                     </div>
                 </form>
 
-
                 <div class="col-12 text-left">
                     <button (click)="resetForm()" class="btn btn-default">بازنشانی از ابتدا</button>
                 </div>
+
             </div>
         </div>
     </div>

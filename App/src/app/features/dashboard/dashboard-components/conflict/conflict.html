@@ -30,11 +30,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of ConflictList | paginate: { itemsPerPage: 10, currentPage: pageNumber, totalItems: ConflictList?.length } ;let i = index;">
+                                    <tr *ngFor="let item of ConflictList | paginate: { itemsPerPage: 10, currentPage: pageNumber, totalItems: total } ;let i = index;">
                                         <td>{{ i+1 }}</td>
                                         <td>{{ item.title }}</td>
-                                        <td>{{ item.id }}</td>
-                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.creationDate }}</td>
+                                        <td>
+                                            <button class="btn btn-info" [routerLink]="'/Dashboard/ConflictDetail/'+item.id">
+                                                جزئیات
+                                            </button> 
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

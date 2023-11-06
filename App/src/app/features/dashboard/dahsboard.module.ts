@@ -10,6 +10,7 @@ import { ProfileComponent } from './dashboard-components/profile/profile.compone
 import { ConflictListComponent } from './dashboard-components/conflict/conflict.component';
 import { ConflictAddComponent } from './dashboard-components/conflict/add/add-conflict';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConflictDetailComponent } from './dashboard-components/conflict/detail/detail-conflict';
 
 
 
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
 
     ConflictListComponent,
-    ConflictAddComponent
+    ConflictAddComponent,
+    ConflictDetailComponent
   ],
   imports: [
     CommonModule,
