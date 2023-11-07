@@ -49,11 +49,11 @@ export class ConflictListComponent implements OnInit {
     this.pageForm.controls['PageSize'].setValue(this.pageSize);
     this.CustomerService.get(this.pageForm.value, null, "discrepancies").subscribe({
       next: (data: any) => {
-        for(let i=0;i<data.content.count;i++){
-          data.content.items[i].creationDate = this.persianCalendarService.PersianCalendar(data.content.items[i].creationDate);
-        }
         this.ConflictList = data.content.items;
         this.total = data.content.count;
+        /*for(let i=0;i<this.total;i++){
+          this.ConflictList[i].creationDate = this.persianCalendarService.PersianCalendar(this.ConflictList[i].creationDate);
+        }*/
         this.dataLoaded = true;
       },
       error: () => { }

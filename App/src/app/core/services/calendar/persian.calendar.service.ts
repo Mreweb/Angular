@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 @Injectable()
 export class PersianCalendarService {
-  weekDayNames: string[] = ["شنبه", "یکشنبه", "دوشنبه",
-    "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"];
+  weekDayNames: string[] = ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"];
   monthNames: string[] = [
     "فروردین",
     "اردیبهشت",
@@ -42,9 +41,7 @@ export class PersianCalendarService {
     this.gregorianDate = this.today.getDate();
     this.WeekDay = this.today.getDay();
     this.toPersian(gregorianDate);
-    return this.strWeekDay + " " + this.day + " " + this.strMonth + " " + this.year;
-
-
+    return  this.year + "/" + Math.floor(this.month) + "/" + this.day;
   }
   toPersian(gregorianDate:any) {
     if ((this.gregorianYear % 4) != 0)
@@ -52,7 +49,7 @@ export class PersianCalendarService {
     else
       this.farsiDate = this.func2();
     this.strMonth = this.monthNames[Math.floor(this.month - 1)];
-    this.strWeekDay = this.weekDayNames[this.WeekDay + 1];
+    this.strWeekDay = this.weekDayNames[(this.WeekDay + 1) % 7];
 
   }
 
