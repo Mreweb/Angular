@@ -35,7 +35,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              
               "src/assets/vendors/js/vendor.bundle.base.js",
               "src/assets/vendors/js/vendor.bundle.addons.js",
               "src/assets/js/off-canvas.js",
@@ -47,7 +46,8 @@
               "src/assets/vendors/chosen/chosen.jquery.min.js",
               "src/assets/vendors/moment/min/moment.min.js",
               "src/assets/js/persian-date-0.1.8.min.js",
-              "src/assets/js/persian-datepicker-0.4.5.min.js"
+              "src/assets/js/persian-datepicker-0.4.5.min.js",
+              "src/assets/js/custom.js"
             ]
           },
           "configurations": {

@@ -13,4 +13,16 @@
     color: #fff;
     display: inline-block;
     vertical-align: top;
+} 
+.breadcrumb.breadcrumb-custom .breadcrumb-item a {
+     border: 0 solid #dbe3e6; 
+}
+.breadcrumb.breadcrumb-custom .breadcrumb-item.active a:before {
+    border-right-color: #29c281;
+}
+.breadcrumb.breadcrumb-custom .breadcrumb-item.current-step {
+    background: rgb(242 ,242, 0);
+}
+.breadcrumb.breadcrumb-custom .breadcrumb-item.current-step a:before {
+    border-right-color: rgb(242 ,242, 0);
 }

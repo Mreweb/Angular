@@ -46,8 +46,7 @@ export class HandleErrorService {
                     break;
             } 
             this.toastr.error(error.error.message);
-        }
-
+        } 
         else {
             // display error message 
             this.toastr.error("خطای ارتباط با سرور");

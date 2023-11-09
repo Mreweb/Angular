@@ -46,3 +46,22 @@
 .table.text-center th {
     text-align: center !important;
 }
+
+.datepicker-outer-container[_ngcontent-ng-c3549933667] {
+    direction: rtl;
+    vertical-align: top;
+    min-width: 200px;
+    font-size: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    position: absolute;
+    z-index: 10000;
+    width: 220px;
+}
+

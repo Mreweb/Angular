@@ -11288,7 +11288,10 @@ pre code {
 .tt-hint {
   display: block;
   width: 100%;
-  padding: 0.875rem 1.375rem;
+  /*Added By ME*/
+  padding: .4375rem .75rem;
+  /*padding: 0.875rem 1.375rem;*/
+  
   font-size: 1rem;
   line-height: 1;
   color: #495057;

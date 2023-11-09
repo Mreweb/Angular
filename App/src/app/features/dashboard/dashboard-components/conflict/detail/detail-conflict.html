@@ -1,8 +1,546 @@
 <div class="row page-table">
+    <div class="col-lg-12 grid-margin ">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-custom">
+                <li class="breadcrumb-item" [class.current-step]="formStep == 1" [class.active]="formStep > 1"><a>ثبت
+                        عنوان مغایرت گیری</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 2" [class.active]="formStep > 2"><a>انتخاب
+                        فایل های اکسل</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 3" [class.active]="formStep > 3"><a>انتخاب
+                        ستون های همتا</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 4" [class.active]="formStep > 4"><a>پیش
+                        نمایش داده ها</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 5" [class.active]="formStep > 5"><a>انجام
+                        مغایرت گیری</a></li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-12">
+        <div class="dropdown" style="margin: 6px 0;float:right;">
+            <button type="button" class="btn btn-success dropdown-toggle" id="dropdownMenuIconButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <i class="fa fa-download"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton4" x-placement="bottom-start">
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/accounting/excel/download')">دانلود فایل اکسل حسابداری آپلود شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/bank/excel/download')">دانلود فایل اکسل بانک آپلود شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/all')">دانلود اکسل مغایرت های ثبت شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/resolved')">دانلود اکسل مغایرت های برطرف شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/pending')">دانلود اکسل مغایرت های باقی مانده</a>
+            </div>
+        </div>
+    </div>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                
+
+                <form *ngIf="formStep == 1" [formGroup]="addConflictTitleForm" class="forms-sample">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="title">عنوان مغایرت گیری</label>
+                            <input type="text" class="form-control" formControlName="title" id="title"
+                                placeholder="عنوانی برای وارد کنید">
+                        </div>
+                    </div>
+                    <button type="submit" (click)="doAddNewConflictTitle()" class="btn btn-primary mr-2">ثبت و
+                        ادامه</button>
+                </form>
+
+                <form *ngIf="formStep == 2" [formGroup]="uploadConflictFileForm" class="forms-sample">
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card-body">
+                                <div class="dropify-wrapper">
+                                    <div class="dropify-message"><span class="file-icon"></span>
+                                        <p>فایل اکسل بانک را انتخاب کنید</p>
+                                        <p *ngIf="bankFileIsValid" class="dropify-error">فایل انتخاب شد</p>
+                                    </div>
+                                    <div class="dropify-loader"></div>
+                                    <div class="dropify-errors-container">
+                                        <ul></ul>
+                                    </div>
+                                    <input (change)="onFileChange($event  , 'bank')" type="file" class="dropify">
+                                    <div class="dropify-preview"><span class="dropify-render"></span>
+                                        <div class="dropify-infos">
+                                            <div class="dropify-infos-inner">
+                                                <p class="dropify-filename"><span class="file-icon"></span> <span
+                                                        class="dropify-filename-inner"></span></p>
+                                                <p class="dropify-infos-message">
+                                                    فایل اکسل بانک را انتخاب کنید
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card-body">
+                                <div class="dropify-wrapper">
+                                    <div class="dropify-message"><span class="file-icon"></span>
+                                        <p>
+                                            فایل اکسل حسابداری را انتخاب کنید
+                                        </p>
+                                        <p *ngIf="companyFileIsValid" class="dropify-error">فایل انتخاب شد</p>
+                                    </div>
+                                    <div class="dropify-loader"></div>
+                                    <div class="dropify-errors-container">
+                                        <ul></ul>
+                                    </div>
+                                    <input (change)="onFileChange($event , 'company')" type="file" class="dropify">
+                                    <div class="dropify-preview"><span class="dropify-render"></span>
+                                        <div class="dropify-infos">
+                                            <div class="dropify-infos-inner">
+                                                <p class="dropify-filename"><span class="file-icon"></span> <span
+                                                        class="dropify-filename-inner"></span></p>
+                                                <p class="dropify-infos-message">
+                                                    فایل اکسل حسابداری را انتخاب کنید
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" (click)="doAddNewConflictUploadFiles()" class="btn btn-primary mr-2">ثبت و
+                            ادامه</button>
+                    </div>
+                </form>
+
+                <form *ngIf="formStep == 3" [formGroup]="conflictColumns" class="forms-sample">
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin row">
+                            <h1 class="alert alert-info text-center col-12">انتخاب ستون های اکسل بانک</h1>
+                            <div class="col-lg-6 grid-margin">
+                                <label>انتخاب صفحه اکسل</label>
+                                <select class="form-control" formControlName="BankSheet">
+                                    <option value="">-- انتخاب کنید --</option>
+                                    <option *ngFor="let item of bankFileSheetName;" [value]="item.sheetName">
+                                        {{ item.sheetName }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 grid-margin">
+                                <label>شماره شروع سطر</label>
+                                <input class="form-control" type="number" formControlName="BankSheetStartRow" />
+                            </div>
+                            <div class="col-12 grid-margin">
+                                <button (click)="getSheetColumns('bank')" class="btn btn-success btn-block">دریافت ستون
+                                    ها</button>
+                            </div>
+                            <p>&nbsp;</p>
+                            <table class="table table-hover table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th>عنوان ستون</th>
+                                        <th>ستون همتا در اکسل بانک</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>عنوان</td>
+                                        <td>
+                                            <select class="form-control" formControlName="BankTitle">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of bankFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهکار</td>
+                                        <td>
+                                            <select class="form-control" formControlName="BankDeptor">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of bankFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>بستانکار</td>
+                                        <td>
+                                            <select class="form-control" formControlName="BankCreditor">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of bankFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>کد مرجع</td>
+                                        <td>
+                                            <select class="form-control" formControlName="BankReferenceCode">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of bankFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>تاریخ</td>
+                                        <td>
+                                            <select class="form-control" formControlName="BankDate">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of bankFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-lg-6 grid-margin row">
+                            <h1 class="alert alert-info text-center col-12">انتخاب ستون های اکسل حسابداری</h1>
+                            <div class="col-lg-6 grid-margin">
+                                <label>انتخاب صفحه اکسل</label>
+                                <select class="form-control" formControlName="CompanySheet">
+                                    <option value="">-- انتخاب کنید --</option>
+                                    <option *ngFor="let item of companyFileSheetName;" [value]="item.sheetName">
+                                        {{ item.sheetName }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 grid-margin">
+                                <label>شماره شروع سطر</label>
+                                <input class="form-control" type="number" formControlName="CompanySheetStartRow" />
+                            </div>
+                            <div class="col-12 grid-margin">
+                                <button (click)="getSheetColumns('company')" class="btn btn-success btn-block">دریافت
+                                    ستون ها</button>
+                            </div>
+                            <p>&nbsp;</p>
+                            <table class="table table-hover table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th>عنوان ستون</th>
+                                        <th>ستون همتا در اکسل بانک</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>عنوان</td>
+                                        <td>
+                                            <select class="form-control" formControlName="CompanyTitle">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of companyFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهکار</td>
+                                        <td>
+                                            <select class="form-control" formControlName="CompanyDeptor">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of companyFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>بستانکار</td>
+                                        <td>
+                                            <select class="form-control" formControlName="CompanyCreditor">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of companyFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>کد مرجع</td>
+                                        <td>
+                                            <select class="form-control" formControlName="CompanyReferenceCode">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of companyFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>تاریخ</td>
+                                        <td>
+                                            <select class="form-control" formControlName="CompanyDate">
+                                                <option value="">-- انتخاب کنید --</option>
+                                                <option *ngFor="let item of companyFileServerColumns;"
+                                                    [value]="item.column">
+                                                    ستون {{ item.column }}
+                                                    -
+                                                    {{ item.title }}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" (click)="doAddNewConflictSelectColumns()" class="btn btn-primary mr-2">ثبت
+                            و ادامه</button>
+                    </div>
+                </form>
+
+
+                <form *ngIf="formStep == 4" class="forms-sample">
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin table-responsive">
+                            <h1 class="alert alert-info text-center col-12">پیش نمایش رکوردهای اکسل بانک</h1>
+                            <table class="table table-stripped table-bordered table-compact table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>عنوان</th>
+                                        <th>بدهکار</th>
+                                        <th>بستانکار</th>
+                                        <th>کد مرجع</th>
+                                        <th>تاریخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of bankRecords;let i=index;">
+                                        <tr [ngClass]="{ 'alert-danger' : item.recordInfo.hasError  }">
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.debtor}}</td>
+                                            <td>{{item.creditor}}</td>
+                                            <td>{{item.code}}</td>
+                                            <td>{{item.dateTimePersian}}</td>
+                                        </tr>
+                                        <tr class="alert-info" *ngIf="item.recordInfo.hasError">
+                                            <td></td>
+                                            <td colspan="5">
+                                                سطر {{ item.recordInfo.row }} -
+                                                ستون {{ item.recordInfo.errorColumn }} -
+                                                {{ item.recordInfo.errorMessage }}
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6 grid-margin table-responsive">
+                            <h1 class="alert alert-info text-center col-12">پیش نمایش رکوردهای اکسل حسابداری</h1>
+                            <table class="table table-stripped table-bordered table-compact table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>عنوان</th>
+                                        <th>بدهکار</th>
+                                        <th>بستانکار</th>
+                                        <th>کد مرجع</th>
+                                        <th>تاریخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of companyRecords;let i=index;">
+                                        <tr [ngClass]="{ 'alert-danger' : item.recordInfo.hasError  }">
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.debtor}}</td>
+                                            <td>{{item.creditor}}</td>
+                                            <td>{{item.code}}</td>
+                                            <td>{{item.dateTimePersian}}</td>
+                                        </tr>
+                                        <tr class="alert-info" *ngIf="item.recordInfo.hasError">
+                                            <td></td>
+                                            <td colspan="5">
+                                                سطر {{ item.recordInfo.row }} -
+                                                ستون {{ item.recordInfo.errorColumn }} -
+                                                {{ item.recordInfo.errorMessage }}
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" (click)="doSaveRecordsForStartConflict()" class="btn btn-primary mr-2">حذف
+                            رکوردهای نامعتبر و ادامه</button>
+                        &nbsp;&nbsp;
+                        <button type="submit" *ngIf="hasErrorInRecords" (click)="resetForm()"
+                            class="btn btn-warning mr-2">اصلاح رکوردها و مغایرت گیری جدید</button>
+                    </div>
+                </form>
+
+                <form *ngIf="formStep == 5" class="forms-sample">
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin table-responsive">
+                            <h1 class="alert alert-info text-center col-12">رکوردهای اکسل بانک</h1>
+                            <table class="table table-stripped table-bordered table-compact table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>انتخاب</th>
+                                        <th>عنوان</th>
+                                        <th>بدهکار</th>
+                                        <th>بستانکار</th>
+                                        <th>کد مرجع</th>
+                                        <th>تاریخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of bankRecords;let i=index;">
+                                        <tr *ngIf="!bankRecords[i].isExcluded">
+                                            <td><input type="checkbox" [value]="bankRecords[i].id"
+                                                    [(ngModel)]="bankRecords[i].checked"
+                                                    [ngModelOptions]="{standalone: true}" /></td>
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.debtor}}</td>
+                                            <td>{{item.creditor}}</td>
+                                            <td>{{item.code}}</td>
+                                            <td>{{item.dateTimePersian}}</td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6 grid-margin table-responsive">
+                            <h1 class="alert alert-info text-center col-12">رکوردهای اکسل حسابداری</h1>
+                            <table class="table table-stripped table-bordered table-compact table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>انتخاب</th>
+                                        <th>عنوان</th>
+                                        <th>بدهکار</th>
+                                        <th>بستانکار</th>
+                                        <th>کد مرجع</th>
+                                        <th>تاریخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let item of companyRecords;let i=index;">
+                                        <tr *ngIf="!companyRecords[i].isExcluded">
+                                            <td><input type="checkbox" [value]="companyRecords[i].id"
+                                                    [(ngModel)]="companyRecords[i].checked"
+                                                    [ngModelOptions]="{standalone: true}" /></td>
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.debtor}}</td>
+                                            <td>{{item.creditor}}</td>
+                                            <td>{{item.code}}</td>
+                                            <td>{{item.dateTimePersian}}</td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" (click)="addManualGroup()" class="btn btn-primary mr-2">
+                            ثبت مغایرت و گروه بندی
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit" (click)="autoConflict()" class="btn btn-primary mr-2">
+                            مغایرت گیری خودکار
+                        </button>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;"
+                            style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
+                            <div class="col-lg-6 grid-margin table-responsive">
+                                <h1 class="alert alert-info text-center col-12">رکورد اکسل بانک</h1>
+                                <table class="table table-stripped table-bordered table-compact table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>بدهکار</th>
+                                            <th>بستانکار</th>
+                                            <th>کد مرجع</th>
+                                            <th>تاریخ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let item of temp.bankRecords;let i=index;">
+                                            <tr>
+                                                <td>{{item.description}}</td>
+                                                <td>{{item.debtor}}</td>
+                                                <td>{{item.creditor}}</td>
+                                                <td>{{item.code}}</td>
+                                                <td>{{item.dateTimePersian}}</td>
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-6 grid-margin table-responsive">
+                                <h1 class="alert alert-info text-center col-12">رکورد اکسل حسابداری</h1>
+                                <table class="table table-stripped table-bordered table-compact table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>بدهکار</th>
+                                            <th>بستانکار</th>
+                                            <th>کد مرجع</th>
+                                            <th>تاریخ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngFor="let item of temp.accountingRecords;let i=index;">
+                                            <tr>
+                                                <td>{{item.description}}</td>
+                                                <td>{{item.debtor}}</td>
+                                                <td>{{item.creditor}}</td>
+                                                <td>{{item.code}}</td>
+                                                <td>{{item.dateTimePersian}}</td>
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <button type="submit" (click)="removeManualGroup(groupList[j].groupListRemoveId)"
+                                    class="btn btn-danger  mr-2">
+                                    حذف گروه
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="col-12 text-left">
+                    <button (click)="resetForm()" class="btn btn-default">بازنشانی از ابتدا</button>
+                </div>
+
             </div>
         </div>
     </div>

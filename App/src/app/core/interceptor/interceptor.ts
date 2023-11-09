@@ -24,6 +24,7 @@ export class HttpInterceptorService implements HttpInterceptor {
                     }
                 },
                 error: (err: HttpErrorResponse) => {
+                    debugger
                     this.error.handleError(err);
                 }
         });

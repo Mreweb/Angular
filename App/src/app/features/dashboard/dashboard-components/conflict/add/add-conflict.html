@@ -3,12 +3,11 @@
     <div class="col-lg-12 grid-margin ">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-custom">
-                <li class="breadcrumb-item" [class.active]="formStep > 1">ثبت عنوان مغایرت گیری</li>
-                <li class="breadcrumb-item" [class.active]="formStep > 2">انتخاب فایل های اکسل</li>
-                <li class="breadcrumb-item" [class.active]="formStep > 3">انتخاب ستون های همتا</li>
-                <li class="breadcrumb-item" [class.active]="formStep > 4">مغایرت گیری</li>
-                <li class="breadcrumb-item" [class.active]="formStep > 5">انجام مغایرت گیری</li>
-                <li class="breadcrumb-item"></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 1" [class.active]="formStep > 1"><a>ثبت عنوان مغایرت گیری</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 2"  [class.active]="formStep > 2"><a>انتخاب فایل های اکسل</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 3"  [class.active]="formStep > 3"><a>انتخاب ستون های همتا</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 4"  [class.active]="formStep > 4"><a>پیش نمایش داده ها</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 5"  [class.active]="formStep > 5"><a>انجام مغایرت گیری</a></li>
             </ol>
         </nav>
     </div>
@@ -26,7 +25,7 @@
                         </div>
                     </div>
                     <button type="submit" (click)="doAddNewConflictTitle()" class="btn btn-primary mr-2">ثبت و
-                        ادامه</button>
+                     ادامه</button>
                 </form>
 
                 <form *ngIf="formStep == 2" [formGroup]="uploadConflictFileForm" class="forms-sample">
@@ -107,7 +106,7 @@
                             </div>
                             <div class="col-lg-6 grid-margin">
                                 <label>شماره شروع سطر</label>
-                                <input type="number" formControlName="BankSheetStartRow" />
+                                <input class="form-control" type="number" formControlName="BankSheetStartRow" />
                             </div>
                             <div class="col-12 grid-margin">
                                 <button (click)="getSheetColumns('bank')" class="btn btn-success btn-block">دریافت ستون
@@ -209,7 +208,7 @@
                             </div>
                             <div class="col-lg-6 grid-margin">
                                 <label>شماره شروع سطر</label>
-                                <input type="number" formControlName="CompanySheetStartRow" />
+                                <input  class="form-control" type="number" formControlName="CompanySheetStartRow" />
                             </div>
                             <div class="col-12 grid-margin">
                                 <button (click)="getSheetColumns('company')" class="btn btn-success btn-block">دریافت

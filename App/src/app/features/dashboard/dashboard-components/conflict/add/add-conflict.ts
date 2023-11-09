@@ -75,10 +75,6 @@ export class ConflictAddComponent implements OnInit {
   hasErrorInRecords: boolean = false;
 
   ngOnInit(): void {
-    //let date1 = this.persianCalendarService.PersianCalendar("2000-10-31T01:30:00.000-05:00");
-    this.pageConflictId = "e62f5742-d502-481e-b078-25da1928841";
-    /*this.initConflict();
-    this.formStep = 5;*/
   }
 
   resetForm() {
@@ -149,6 +145,7 @@ export class ConflictAddComponent implements OnInit {
         this.toastr.error(data.message);
       }
     });
+
   }
 
   doAddNewConflictUploadFiles() {

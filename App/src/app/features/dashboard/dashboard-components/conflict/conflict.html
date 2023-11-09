@@ -7,12 +7,25 @@
                         <h4 class="card-title">فهرست مغایرت گیری ها</h4>
                     </div>
                     <div class="col-sm-12 col-md-8 text-left">
-                        <div class="dataTables_filter">
+                        <form [formGroup]="pageForm" class="dataTables_filter"> 
                             <label>
-                                عنوان
-                                <input type="text" class="form-control" placeholder="جستجو ...">
+                                از تاریخ
+                                <ng-persian-datepicker [dateInitValue]="false">
+                                    <input class="form-control" type="text" [formControl]="pageForm.controls['From']" />
+                                </ng-persian-datepicker>
                             </label>
-                        </div>
+                            &nbsp;&nbsp;
+                            <label> 
+                                تا تاریخ
+                                <ng-persian-datepicker [dateInitValue]="false">
+                                    <input class="form-control" type="text" [formControl]="pageForm.controls['To']" />
+                                </ng-persian-datepicker>
+                            </label>
+                            &nbsp;&nbsp;
+                            <label>
+                                <button class="btn btn-peimary" (click)="getConflictList()">جستجو</button>
+                            </label>
+                        </form>
                     </div>
                 </div>
 
