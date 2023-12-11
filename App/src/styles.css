@@ -40,12 +40,15 @@
 .table thead th {
     background: #ececec;
 }
-
-
-
-.table.text-center th {
+.table.text-center th ,
+    .table.text-center td {
     text-align: center !important;
 }
+table .fit{
+    width:1px;
+    white-space: nowrap;
+}
+
 
 .datepicker-outer-container[_ngcontent-ng-c3549933667] {
     direction: rtl;

@@ -31,23 +31,23 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <ngx-skeleton-loader count="12" appearance="line" *ngIf="!dataLoaded"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader count="18" appearance="line" *ngIf="!dataLoaded"></ngx-skeleton-loader>
                         <div class="table-responsive">
                             <table  *ngIf="dataLoaded" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>ردیف</th>
+                                        <th class="fit">ردیف</th>
                                         <th>عنوان مغایرت گیری</th>
-                                        <th>تاریخ ثبت</th>
-                                        <th>جزئیات</th>
+                                        <th class="fit">تاریخ ثبت</th>
+                                        <th class="fit">جزئیات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of ConflictList | paginate: { itemsPerPage: 10, currentPage: pageNumber, totalItems: total } ;let i = index;">
-                                        <td>{{ i+1 }}</td>
+                                        <td class="fit">{{ i+1 }}</td>
                                         <td>{{ item.title }}</td>
-                                        <td>{{ item.creationDate }}</td>
-                                        <td>
+                                        <td class="fit">{{ item.creationDate }}</td>
+                                        <td class="fit">
                                             <button class="btn btn-info" [routerLink]="'/Dashboard/ConflictDetail/'+item.id">
                                                 جزئیات
                                             </button> 

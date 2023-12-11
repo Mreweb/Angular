@@ -37,7 +37,6 @@ export class LoginComponent {
       data =>{
         this.captchaSrc = "data:image/png;base64,"+data.content.captchaImage;
         this.pageForm.controls['captchaId'].setValue(data.content.captchaId);
-        console.log(data);
       }
     )
   }
@@ -46,7 +45,9 @@ export class LoginComponent {
   }
   doRegister() {
 
-    if (!this.pageForm.valid) {
+    this.router.navigate(['/Dashboard/ConflictList'] ,  { relativeTo: this.route });
+
+    /*if (!this.pageForm.valid) {
       this.toastr.error('خطا در ورود', 'ورودی ها نامعتبر هستند');
     } else {
       this.blockUI.start();
@@ -67,7 +68,7 @@ export class LoginComponent {
           this.toastr.info(error.error.message);
         }
       );
-    }
+    }*/
   }
 
 }
