@@ -14,19 +14,28 @@
                         مغایرت گیری</a></li>
             </ol>
         </nav>
+        <i class="fas fa-redo refresh-form" data-toggle="tooltip" data-placement="bottom" title="بازنشانی" (click)="resetForm()" ></i>
     </div>
 
     <div class="col-12">
         <div class="dropdown" style="margin: 6px 0;float:right;">
-            <button type="button" class="btn btn-success dropdown-toggle" id="dropdownMenuIconButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button type="button" class="btn btn-success dropdown-toggle" id="dropdownMenuIconButton4"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <i class="fa fa-download"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton4" x-placement="bottom-start">
-                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/accounting/excel/download')">دانلود فایل اکسل حسابداری آپلود شده</a>
-                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/bank/excel/download')">دانلود فایل اکسل بانک آپلود شده</a>
-                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/all')">دانلود اکسل مغایرت های ثبت شده</a>
-                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/resolved')">دانلود اکسل مغایرت های برطرف شده</a>
-                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/pending')">دانلود اکسل مغایرت های باقی مانده</a>
+                <a class="dropdown-item"
+                    (click)="download('discrepancies/'+pageConflictId+'/accounting/excel/download')">دانلود فایل اکسل
+                    حسابداری آپلود شده</a>
+                <a class="dropdown-item"
+                    (click)="download('discrepancies/'+pageConflictId+'/bank/excel/download')">دانلود فایل اکسل بانک
+                    آپلود شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/all')">دانلود اکسل
+                    مغایرت های ثبت شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/resolved')">دانلود
+                    اکسل مغایرت های برطرف شده</a>
+                <a class="dropdown-item" (click)="download('discrepancies/'+pageConflictId+'/reports/pending')">دانلود
+                    اکسل مغایرت های باقی مانده</a>
             </div>
         </div>
     </div>
@@ -102,35 +111,40 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" (click)="doAddNewConflictUploadFiles()" class="btn btn-primary mr-2">ثبت و
-                            ادامه</button>
+                        <div class="col-12 card-body">
+                            <button type="submit" (click)="doAddNewConflictUploadFiles()"
+                                class="btn btn-primary mr-2">ثبت و ادامه</button>
+                        </div>
                     </div>
                 </form>
 
                 <form *ngIf="formStep == 3" [formGroup]="conflictColumns" class="forms-sample">
                     <div class="row">
-                        <div class="col-lg-6 grid-margin row">
+                        <div class="col-lg-6 grid-margin">
                             <h1 class="alert alert-info text-center col-12">انتخاب ستون های اکسل بانک</h1>
-                            <div class="col-lg-6 grid-margin">
-                                <label>انتخاب صفحه اکسل</label>
-                                <select class="form-control" formControlName="BankSheet">
-                                    <option value="">-- انتخاب کنید --</option>
-                                    <option *ngFor="let item of bankFileSheetName;" [value]="item.sheetName">
-                                        {{ item.sheetName }}
-                                    </option>
-                                </select>
+
+
+                            <div class="row">
+                                <div class="col-lg-6 grid-margin">
+                                    <label>انتخاب صفحه اکسل</label>
+                                    <select class="form-control" formControlName="BankSheet">
+                                        <option value="">-- انتخاب کنید --</option>
+                                        <option *ngFor="let item of bankFileSheetName;" [value]="item.sheetName">
+                                            {{ item.sheetName }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 grid-margin">
+                                    <label>شماره شروع سطر</label>
+                                    <input class="form-control" type="number" formControlName="BankSheetStartRow" />
+                                </div>
                             </div>
-                            <div class="col-lg-6 grid-margin">
-                                <label>شماره شروع سطر</label>
-                                <input class="form-control" type="number" formControlName="BankSheetStartRow" />
-                            </div>
-                            <div class="col-12 grid-margin">
+
+
+                            <div class="grid-margin">
                                 <button (click)="getSheetColumns('bank')" class="btn btn-success btn-block">دریافت ستون
                                     ها</button>
                             </div>
-                            <p>&nbsp;</p>
                             <table class="table table-hover table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
@@ -215,24 +229,27 @@
 
                         <div class="col-lg-6 grid-margin row">
                             <h1 class="alert alert-info text-center col-12">انتخاب ستون های اکسل حسابداری</h1>
-                            <div class="col-lg-6 grid-margin">
-                                <label>انتخاب صفحه اکسل</label>
-                                <select class="form-control" formControlName="CompanySheet">
-                                    <option value="">-- انتخاب کنید --</option>
-                                    <option *ngFor="let item of companyFileSheetName;" [value]="item.sheetName">
-                                        {{ item.sheetName }}
-                                    </option>
-                                </select>
+
+
+                            <div class="row">
+                                <div class="col-lg-6 grid-margin">
+                                    <label>انتخاب صفحه اکسل</label>
+                                    <select class="form-control" formControlName="CompanySheet">
+                                        <option value="">-- انتخاب کنید --</option>
+                                        <option *ngFor="let item of companyFileSheetName;" [value]="item.sheetName">
+                                            {{ item.sheetName }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 grid-margin">
+                                    <label>شماره شروع سطر</label>
+                                    <input class="form-control" type="number" formControlName="CompanySheetStartRow" />
+                                </div>
                             </div>
-                            <div class="col-lg-6 grid-margin">
-                                <label>شماره شروع سطر</label>
-                                <input class="form-control" type="number" formControlName="CompanySheetStartRow" />
-                            </div>
-                            <div class="col-12 grid-margin">
+                            <div class="grid-margin">
                                 <button (click)="getSheetColumns('company')" class="btn btn-success btn-block">دریافت
                                     ستون ها</button>
                             </div>
-                            <p>&nbsp;</p>
                             <table class="table table-hover table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
@@ -461,7 +478,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div>
                         <button type="submit" (click)="addManualGroup()" class="btn btn-primary mr-2">
                             ثبت مغایرت و گروه بندی
                         </button>
@@ -473,8 +490,7 @@
 
 
                     <div class="row">
-                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;"
-                            style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
+                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;" style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
                             <div class="col-lg-6 grid-margin table-responsive">
                                 <h1 class="alert alert-info text-center col-12">رکورد اکسل بانک</h1>
                                 <table class="table table-stripped table-bordered table-compact table-hover">
@@ -535,11 +551,7 @@
                         </div>
                     </div>
                 </form>
-
-
-                <div class="col-12 text-left">
-                    <button (click)="resetForm()" class="btn btn-default">بازنشانی از ابتدا</button>
-                </div>
+ 
 
             </div>
         </div>

@@ -5,6 +5,7 @@
     font-size: 20px;
     margin: 20px 0;
 }
+
 .breadcrumb.breadcrumb-custom .breadcrumb-item.active {
     font-size: 0.8125rem;
     background: #29c281;
@@ -12,6 +13,9 @@
     color: #fff;
     display: inline-block;
     vertical-align: top;
+} 
+.breadcrumb.breadcrumb-custom .breadcrumb-item:last-child{
+    background: #dbe3e6;
 }
 .breadcrumb.breadcrumb-custom .breadcrumb-item a {
      border: 0 solid #dbe3e6; 
@@ -24,14 +28,4 @@
 }
 .breadcrumb.breadcrumb-custom .breadcrumb-item.current-step a:before {
     border-right-color: rgb(242 ,242, 0);
-}
-.breadcrumb  , .grid-margin{
-    margin-bottom: 0;
-}
-.dropdown-menu {
-    min-width: 305px;
-    transform: translate3d(0, 41px, 0px) !important;
-}
-.dropdown-item {
-    cursor: pointer;
 }

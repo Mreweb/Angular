@@ -3,13 +3,20 @@
     <div class="col-lg-12 grid-margin ">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-custom">
-                <li class="breadcrumb-item" [class.current-step]="formStep == 1" [class.active]="formStep > 1"><a>ثبت عنوان مغایرت گیری</a></li>
-                <li class="breadcrumb-item" [class.current-step]="formStep == 2"  [class.active]="formStep > 2"><a>انتخاب فایل های اکسل</a></li>
-                <li class="breadcrumb-item" [class.current-step]="formStep == 3"  [class.active]="formStep > 3"><a>انتخاب ستون های همتا</a></li>
-                <li class="breadcrumb-item" [class.current-step]="formStep == 4"  [class.active]="formStep > 4"><a>پیش نمایش داده ها</a></li>
-                <li class="breadcrumb-item" [class.current-step]="formStep == 5"  [class.active]="formStep > 5"><a>انجام مغایرت گیری</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 1" [class.active]="formStep > 1"><a>ثبت
+                        عنوان مغایرت گیری</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 2" [class.active]="formStep > 2"><a>انتخاب
+                        فایل های اکسل</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 3" [class.active]="formStep > 3"><a>انتخاب
+                        ستون های همتا</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 4" [class.active]="formStep > 4"><a>پیش
+                        نمایش داده ها</a></li>
+                <li class="breadcrumb-item" [class.current-step]="formStep == 5" [class.active]="formStep > 5"><a>انجام
+                        مغایرت گیری</a></li>
             </ol>
         </nav>
+
+        <i class="fas fa-redo refresh-form" data-toggle="tooltip" data-placement="bottom" title="بازنشانی" (click)="resetForm()" ></i>
     </div>
 
     <div class="col-lg-12 grid-margin stretch-card">
@@ -17,7 +24,7 @@
             <div class="card-body">
 
                 <form *ngIf="formStep == 1" [formGroup]="addConflictTitleForm" class="forms-sample">
-                    <div class="col-12">
+                    <div class="col-12 col-md-4">
                         <div class="form-group">
                             <label for="title">عنوان مغایرت گیری</label>
                             <input type="text" class="form-control" formControlName="title" id="title"
@@ -25,7 +32,7 @@
                         </div>
                     </div>
                     <button type="submit" (click)="doAddNewConflictTitle()" class="btn btn-primary mr-2">ثبت و
-                     ادامه</button>
+                        ادامه</button>
                 </form>
 
                 <form *ngIf="formStep == 2" [formGroup]="uploadConflictFileForm" class="forms-sample">
@@ -84,35 +91,37 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" (click)="doAddNewConflictUploadFiles()" class="btn btn-primary mr-2">ثبت و
-                            ادامه</button>
+                        <div class="col-12 card-body">
+                            <button type="submit" (click)="doAddNewConflictUploadFiles()"
+                                class="btn btn-primary mr-2">ثبت و ادامه</button>
+                        </div>
                     </div>
                 </form>
 
                 <form *ngIf="formStep == 3" [formGroup]="conflictColumns" class="forms-sample">
                     <div class="row">
-                        <div class="col-lg-6 grid-margin row">
+                        <div class="col-lg-6 grid-margin">
                             <h1 class="alert alert-info text-center col-12">انتخاب ستون های اکسل بانک</h1>
-                            <div class="col-lg-6 grid-margin">
-                                <label>انتخاب صفحه اکسل</label>
-                                <select class="form-control" formControlName="BankSheet">
-                                    <option value="">-- انتخاب کنید --</option>
-                                    <option *ngFor="let item of bankFileSheetName;" [value]="item.sheetName">
-                                        {{ item.sheetName }}
-                                    </option>
-                                </select>
+
+                            <div class="row">
+                                <div class="col-6 grid-margin">
+                                    <label>انتخاب صفحه اکسل</label>
+                                    <select class="form-control" formControlName="BankSheet">
+                                        <option value="">-- انتخاب کنید --</option>
+                                        <option *ngFor="let item of bankFileSheetName;" [value]="item.sheetName">
+                                            {{ item.sheetName }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-6 grid-margin">
+                                    <label>شماره شروع سطر</label>
+                                    <input class="form-control" type="number" formControlName="BankSheetStartRow" />
+                                </div>
                             </div>
-                            <div class="col-lg-6 grid-margin">
-                                <label>شماره شروع سطر</label>
-                                <input class="form-control" type="number" formControlName="BankSheetStartRow" />
-                            </div>
-                            <div class="col-12 grid-margin">
-                                <button (click)="getSheetColumns('bank')" class="btn btn-success btn-block">دریافت ستون
+                            <div class="grid-margin">
+                                <button (click)="getSheetColumns('bank')" class="btn btn-success">دریافت ستون
                                     ها</button>
                             </div>
-                            <p>&nbsp;</p>
                             <table class="table table-hover table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
@@ -195,26 +204,27 @@
                             </table>
                         </div>
 
-                        <div class="col-lg-6 grid-margin row">
+                        <div class="col-lg-6 grid-margin">
                             <h1 class="alert alert-info text-center col-12">انتخاب ستون های اکسل حسابداری</h1>
-                            <div class="col-lg-6 grid-margin">
-                                <label>انتخاب صفحه اکسل</label>
-                                <select class="form-control" formControlName="CompanySheet">
-                                    <option value="">-- انتخاب کنید --</option>
-                                    <option *ngFor="let item of companyFileSheetName;" [value]="item.sheetName">
-                                        {{ item.sheetName }}
-                                    </option>
-                                </select>
+                            <div class="row">
+                                <div class="col-6 grid-margin">
+                                    <label>انتخاب صفحه اکسل</label>
+                                    <select class="form-control" formControlName="CompanySheet">
+                                        <option value="">-- انتخاب کنید --</option>
+                                        <option *ngFor="let item of companyFileSheetName;" [value]="item.sheetName">
+                                            {{ item.sheetName }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-6 grid-margin">
+                                    <label>شماره شروع سطر</label>
+                                    <input class="form-control" type="number" formControlName="CompanySheetStartRow" />
+                                </div>
                             </div>
-                            <div class="col-lg-6 grid-margin">
-                                <label>شماره شروع سطر</label>
-                                <input  class="form-control" type="number" formControlName="CompanySheetStartRow" />
-                            </div>
-                            <div class="col-12 grid-margin">
-                                <button (click)="getSheetColumns('company')" class="btn btn-success btn-block">دریافت
+                            <div class="grid-margin">
+                                <button (click)="getSheetColumns('company')" class="btn btn-success">دریافت
                                     ستون ها</button>
                             </div>
-                            <p>&nbsp;</p>
                             <table class="table table-hover table-bordered table-striped text-center">
                                 <thead>
                                     <tr>
@@ -302,7 +312,6 @@
                             و ادامه</button>
                     </div>
                 </form>
-
 
                 <form *ngIf="formStep == 4" class="forms-sample">
                     <div class="row">
@@ -428,7 +437,7 @@
                                 </thead>
                                 <tbody>
                                     <ng-container *ngFor="let item of companyRecords;let i=index;">
-                                        <tr  *ngIf="!companyRecords[i].isExcluded">
+                                        <tr *ngIf="!companyRecords[i].isExcluded">
                                             <td><input type="checkbox" [value]="companyRecords[i].id"
                                                     [(ngModel)]="companyRecords[i].checked"
                                                     [ngModelOptions]="{standalone: true}" /></td>
@@ -444,19 +453,21 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <button type="submit" (click)="addManualGroup()" class="btn btn-primary mr-2">
+                    <div>
+                        <button type="submit" (click)="addManualGroup()" class="btn btn-primary mr-2"
+                            style="margin-right: 0 !important;">
                             ثبت مغایرت و گروه بندی
                         </button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="submit" (click)="autoConflict()" class="btn btn-primary mr-2">
+                        <button type="submit" (click)="autoConflict()" class="btn btn-success mr-2">
                             مغایرت گیری خودکار
                         </button>
                     </div>
 
 
                     <div class="row">
-                        <div class="col-12 panel panel-primary row"  *ngFor="let temp of groupList; let j = index;" style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
+                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;"
+                            style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
                             <div class="col-lg-6 grid-margin table-responsive">
                                 <h1 class="alert alert-info text-center col-12">رکورد اکسل بانک</h1>
                                 <table class="table table-stripped table-bordered table-compact table-hover">
@@ -507,9 +518,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                             <div class="col-lg-12">
-                                <button type="submit" (click)="removeManualGroup(groupList[j].groupListRemoveId)" class="btn btn-danger  mr-2">
+                                <button type="submit" (click)="removeManualGroup(groupList[j].groupListRemoveId)"
+                                    class="btn btn-danger  mr-2">
                                     حذف گروه
                                 </button>
                             </div>
@@ -517,12 +529,12 @@
                     </div>
                 </form>
 
-
-                <div class="col-12 text-left">
-                    <button (click)="resetForm()" class="btn btn-default">بازنشانی از ابتدا</button>
-                </div>
-
             </div>
         </div>
     </div>
+
 </div>
+
+<script>
+    
+</script>

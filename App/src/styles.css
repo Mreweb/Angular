@@ -7,11 +7,14 @@
 .ngx-pagination li {
     margin-right: 0.0625rem;
     border-radius: 0;
-    padding: 2px !important;
+    padding: 0 !important;
     border: 1px solid #ebe4e4;
     margin: 0 2px;
     min-width: 40px;
     text-align: center;
+}
+.ngx-pagination span {
+    padding: 8px !important;
 }
 .ngx-pagination a, .ngx-pagination button {
     cursor: pointer;
@@ -68,3 +71,26 @@ table .fit{
     width: 220px;
 }
 
+
+.sidebar-dark .navbar.default-layout-navbar .navbar-brand-wrapper {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    border-top: 0;
+}
+
+.refresh-form{
+    float: left;
+    position: absolute;
+    top: -17px;
+    left: 11px;
+    bottom: 0;
+    margin: auto;
+    height: 41px;
+    background: #392c70;
+    padding: 14px;
+    color: #fff;
+    cursor: pointer;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}

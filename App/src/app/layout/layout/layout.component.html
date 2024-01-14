@@ -10,20 +10,7 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="fas fa-bars"></span>
         </button>
-        <ul class="navbar-nav">
-          <li class="nav-item nav-search d-none d-md-flex">
-            <div class="nav-link">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" placeholder="جستجو" aria-label="Search">
-              </div>
-            </div>
-          </li>
-        </ul>
+ 
         <ul class="navbar-nav navbar-nav-right">
  
           <!-- <li class="nav-item dropdown">
@@ -140,23 +127,6 @@
               </a>
             </div>
           </li> -->
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="assets/images/faces/face5.jpg" alt="profile" />
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <div class="dropdown-divider"></div>
-              <a (click)="logOut()" class="dropdown-item">
-                <i class="fas fa-power-off text-primary"></i>
-                خروج
-              </a>
-            </div>
-          </li>
-          <li class="nav-item nav-settings d-none d-lg-block1">
-            <a class="nav-link">
-              <i class="fas fa-ellipsis-h"></i>
-            </a>
-          </li>
         </ul>
         <!-- <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
           data-toggle="offcanvas">
@@ -166,186 +136,9 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_settings-panel.html -->
-      <div class="theme-setting-wrapper">
-        <div id="settings-trigger"><i class="fas fa-fill-drip"></i></div>
-        <div id="theme-settings" class="settings-panel">
-          <i class="settings-close fa fa-times"></i>
-          <p class="settings-heading">پوسته سایدبار</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-            <div class="img-ss rounded-circle bg-light border ml-3"></div>روشن
-          </div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme">
-            <div class="img-ss rounded-circle bg-dark border ml-3"></div>تاریک
-          </div>
-          <p class="settings-heading mt-2">پوسته هدر</p>
-          <div class="color-tiles mx-0 px-4">
-            <div class="tiles primary"></div>
-            <div class="tiles success"></div>
-            <div class="tiles warning"></div>
-            <div class="tiles danger"></div>
-            <div class="tiles info"></div>
-            <div class="tiles dark"></div>
-            <div class="tiles default"></div>
-          </div>
-        </div>
-      </div>
-      <div id="right-sidebar" class="settings-panel">
-        <i class="settings-close fa fa-times"></i>
-        <ul class="nav nav-tabs" id="setting-panel" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
-              aria-controls="todo-section" aria-expanded="true">لیست انجام</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
-              aria-controls="chats-section">گفتگو ها</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="setting-content">
-          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
-            aria-labelledby="todo-section">
-            <div class="add-items d-flex px-3 mb-0">
-              <form class="form w-100">
-                <div class="form-group d-flex">
-                  <input type="text" class="form-control todo-list-input" placeholder="افزودن مورد جدید ...">
-                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task-todo">افزودن</button>
-                </div>
-              </form>
-            </div>
-            <div class="list-wrapper px-3">
-              <ul class="d-flex flex-column-reverse todo-list">
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox">
-                      جلسه با تیم پروژه در ساعت 3 بعد از ظهر
-                    </label>
-                  </div>
-                  <i class="remove fa fa-times-circle"></i>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox">
-                      آماده کردن متن سخنرانی کنفرانس
-                    </label>
-                  </div>
-                  <i class="remove fa fa-times-circle"></i>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox">
-                      خرید بلیط پرواز به پاریس
-                    </label>
-                  </div>
-                  <i class="remove fa fa-times-circle"></i>
-                </li>
-                <li class="completed">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" checked>
-                      نوشتن برنامه ملاقات های هفته آینده
-                    </label>
-                  </div>
-                  <i class="remove fa fa-times-circle"></i>
-                </li>
-                <li class="completed">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" checked>
-                      بازبینی پروژه
-                    </label>
-                  </div>
-                  <i class="remove fa fa-times-circle"></i>
-                </li>
-              </ul>
-            </div>
-            <div class="events py-4 border-bottom px-3">
-              <div class="wrapper d-flex mb-2">
-                <i class="fa fa-times-circle text-primary ml-2"></i>
-                <span>11 تیر 1400</span>
-              </div>
-              <p class="mb-0 font-weight-thin text-gray">ایجاد پروژه</p>
-              <p class="text-gray mb-0">ساختن پارت های پروژه</p>
-            </div>
-            <div class="events pt-4 px-3">
-              <div class="wrapper d-flex mb-2">
-                <i class="fa fa-times-circle text-primary ml-2"></i>
-                <span>07 تیر 1400</span>
-              </div>
-              <p class="mb-0 font-weight-thin text-gray">جلسه با مهندس افشار</p>
-              <p class="text-gray mb-0 ">تماس با مهندس شریفی</p>
-            </div>
-          </div>
-          <!-- To do section tab ends -->
-          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
-            <div class="d-flex align-items-center justify-content-between border-bottom">
-              <p class="settings-heading border-top-0 mb-3 pr-3 pt-0 border-bottom-0 pb-0">دوستان</p>
-              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pl-3 font-weight-normal">مشاهده
-                همه</small>
-            </div>
-            <ul class="chat-list">
-              <li class="list active">
-                <div class="profile"><img src="assets/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>رضا کریمی</p>
-                  <p>آنلاین</p>
-                </div>
-                <small class="text-muted my-auto">19 دقیقه قبل</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="assets/images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
-                <div class="info">
-                  <div class="wrapper d-flex">
-                    <p>پریسا</p>
-                  </div>
-                  <p>خیلی وقت پیش</p>
-                </div>
-                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
-                <small class="text-muted my-auto">23 دقیقه قبل</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="assets/images/faces/face3.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>امیر صبوری</p>
-                  <p>آنلاین</p>
-                </div>
-                <small class="text-muted my-auto">14 دقیقه قبل</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="assets/images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
-                <div class="info">
-                  <p>علیرضا مغانلو</p>
-                  <p>خیلی وقت پیش</p>
-                </div>
-                <small class="text-muted my-auto">23 دقیقه قبل</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="assets/images/faces/face5.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>نیلوفر غفاری</p>
-                  <p>آنلاین</p>
-                </div>
-                <small class="text-muted my-auto">53 دقیقه قبل</small>
-              </li>
-              <li class="list">
-                <div class="profile"><img src="assets/images/faces/face6.jpg" alt="image"><span class="online"></span></div>
-                <div class="info">
-                  <p>مهدی نادری</p>
-                  <p>آنلاین</p>
-                </div>
-                <small class="text-muted my-auto">57 دقیقه قبل</small>
-              </li>
-            </ul>
-          </div>
-          <!-- chat tab ends -->
-        </div>
-      </div>
-      <!-- partial -->
+
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar sidebar-offcanvas sidebar-dark" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
             <div class="nav-link">
@@ -371,7 +164,7 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false"
               aria-controls="page-layouts">
-              <i class="fab fa-trello menu-icon"></i>
+              <i class="fas fa-book menu-icon"></i>
               <span class="menu-title">مغایرت گیری</span>
               <i class="menu-arrow"></i>
             </a>
@@ -381,6 +174,13 @@
                 <li class="nav-item" routerLink="/Dashboard/ConflictList/Add"> <a class="nav-link">افزودن مغایرت گیری</a></li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            
+            <a class="nav-link" (click)="logOut()">
+              <i class="fas fa-sign-out-alt menu-icon"></i>
+              <span class="menu-title">خروج</span>
+            </a>
           </li>
         </ul>
       </nav>
