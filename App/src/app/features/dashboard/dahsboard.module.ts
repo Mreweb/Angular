@@ -12,6 +12,7 @@ import { ConflictAddComponent } from './dashboard-components/conflict/add/add-co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConflictDetailComponent } from './dashboard-components/conflict/detail/detail-conflict';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { SearchPipe } from '@app/core/services/search-table.pipe';
 
 
 
@@ -21,10 +22,10 @@ import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
     LayoutComponent,
     HomeComponent,
     ProfileComponent,
-
     ConflictListComponent,
     ConflictAddComponent,
-    ConflictDetailComponent
+    ConflictDetailComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,

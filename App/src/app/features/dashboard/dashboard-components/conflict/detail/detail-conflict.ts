@@ -73,12 +73,15 @@ export class ConflictDetailComponent implements OnInit {
 
   });
 
+  bankSearch: any;
+  accountSearch: any;
   bankRecords: any;
   companyRecords: any;
   hasErrorInRecords: boolean = false;
 
   ngOnInit(): void {
 
+    this.blockUI.start();
     this.CustomerService.get(null, null, "discrepancies/" + this.pageConflictId).subscribe({
       next: (data: any) => {
         this.blockUI.stop();
@@ -448,6 +451,7 @@ export class ConflictDetailComponent implements OnInit {
 
   addManualGroup() {
 
+    this.blockUI.start();
     let bankRecordsTemp = [];
     let bankRecordsIds = [];
     for (let i = 0; i < this.bankRecords.length; i++) {
@@ -486,9 +490,13 @@ export class ConflictDetailComponent implements OnInit {
         this.groupListRemoveId = data.content;
         this.groupList[this.groupList.length - 1].groupListRemoveId = this.groupListRemoveId;
         this.toastr.success(data.message);
+        this.blockUI.stop();
+        this.bankSearch = "";
+        this.accountSearch = "";
       },
       error: (data: any) => {
         this.toastr.error(data.message);
+        this.blockUI.stop();
       }
     });
 
@@ -515,6 +523,7 @@ export class ConflictDetailComponent implements OnInit {
 
 
   initConflict() {
+    this.blockUI.start();
     this.formStep = 5;
     this.CustomerService.get(null, null, "discrepancies/" + this.pageConflictId).subscribe({
       next: (data: any) => {
@@ -548,26 +557,33 @@ export class ConflictDetailComponent implements OnInit {
         }
 
         this.toastr.success(data.message);
+        this.blockUI.stop();
       },
       error: (data: any) => {
         this.toastr.error(data.message);
+        this.blockUI.stop();
       }
     });
   }
 
 
   autoConflict() {
+    this.blockUI.start();
     this.CustomerService.put({
       "keepCurrentGroups": false
     }, null, "discrepancies/" + this.pageConflictId + "/auto-group").subscribe({
       next: (data: any) => {
         this.initConflict();
+        this.blockUI.stop();
       },
       error: (data: any) => {
         this.toastr.error(data.message);
+        this.blockUI.stop();
       }
     });
   }
+
+
 
 
 

@@ -14,7 +14,8 @@
                         مغایرت گیری</a></li>
             </ol>
         </nav>
-        <i class="fas fa-redo refresh-form" data-toggle="tooltip" data-placement="bottom" title="بازنشانی" (click)="resetForm()" ></i>
+        <i class="fas fa-redo refresh-form" data-toggle="tooltip" data-placement="bottom" title="بازنشانی"
+            (click)="resetForm()"></i>
     </div>
 
     <div class="col-12">
@@ -417,9 +418,19 @@
                 </form>
 
                 <form *ngIf="formStep == 5" class="forms-sample">
+                    <div>
+                        <button type="submit" (click)="addManualGroup()" class="btn btn-primary ml-2 mb-4">
+                            ثبت مغایرت و گروه بندی
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit" (click)="autoConflict()" class="btn btn-primary ml-2 mb-4">
+                            مغایرت گیری خودکار
+                        </button>
+                    </div>
                     <div class="row">
                         <div class="col-lg-6 grid-margin table-responsive">
                             <h1 class="alert alert-info text-center col-12">رکوردهای اکسل بانک</h1>
+                            <input type="text" [(ngModel)]="bankSearch"  [ngModelOptions]="{standalone: true}" placeholder="جستجو کنید"/>
                             <table class="table table-stripped table-bordered table-compact table-hover">
                                 <thead>
                                     <tr>
@@ -432,7 +443,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ng-container *ngFor="let item of bankRecords;let i=index;">
+                                    <ng-container *ngFor="let item of bankRecords | customerFilter:bankSearch ;let i=index;">
                                         <tr *ngIf="!bankRecords[i].isExcluded">
                                             <td><input type="checkbox" [value]="bankRecords[i].id"
                                                     [(ngModel)]="bankRecords[i].checked"
@@ -449,6 +460,7 @@
                         </div>
                         <div class="col-lg-6 grid-margin table-responsive">
                             <h1 class="alert alert-info text-center col-12">رکوردهای اکسل حسابداری</h1>
+                            <input type="text" [(ngModel)]="accountSearch"  [ngModelOptions]="{standalone: true}" placeholder="جستجو کنید"/>
                             <table class="table table-stripped table-bordered table-compact table-hover">
                                 <thead>
                                     <tr>
@@ -461,7 +473,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ng-container *ngFor="let item of companyRecords;let i=index;">
+                                    <ng-container *ngFor="let item of companyRecords  | customerFilter:accountSearch ;let i=index;">
                                         <tr *ngIf="!companyRecords[i].isExcluded">
                                             <td><input type="checkbox" [value]="companyRecords[i].id"
                                                     [(ngModel)]="companyRecords[i].checked"
@@ -489,7 +501,8 @@
 
 
                     <div class="row">
-                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;" style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
+                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;"
+                            style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
                             <div class="col-lg-6 grid-margin table-responsive">
                                 <h1 class="alert alert-info text-center col-12">رکورد اکسل بانک</h1>
                                 <table class="table table-stripped table-bordered table-compact table-hover">
@@ -550,7 +563,7 @@
                         </div>
                     </div>
                 </form>
- 
+
 
             </div>
         </div>
