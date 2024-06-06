@@ -346,6 +346,7 @@
                             <table class="table table-stripped table-bordered table-compact table-hover">
                                 <thead>
                                     <tr>
+                                        <th>ردیف</th>
                                         <th>عنوان</th>
                                         <th>بدهکار</th>
                                         <th>بستانکار</th>
@@ -356,6 +357,7 @@
                                 <tbody>
                                     <ng-container *ngFor="let item of bankRecords;let i=index;">
                                         <tr [ngClass]="{ 'alert-danger' : item.recordInfo.hasError  }">
+                                            <td>{{i+1}}</td>
                                             <td>{{item.description}}</td>
                                             <td>{{item.debtor}}</td>
                                             <td>{{item.creditor}}</td>
@@ -379,6 +381,7 @@
                             <table class="table table-stripped table-bordered table-compact table-hover">
                                 <thead>
                                     <tr>
+                                        <th>ردیف</th>
                                         <th>عنوان</th>
                                         <th>بدهکار</th>
                                         <th>بستانکار</th>
@@ -389,6 +392,7 @@
                                 <tbody>
                                     <ng-container *ngFor="let item of companyRecords;let i=index;">
                                         <tr [ngClass]="{ 'alert-danger' : item.recordInfo.hasError  }">
+                                            <td>{{i+1}}</td>
                                             <td>{{item.description}}</td>
                                             <td>{{item.debtor}}</td>
                                             <td>{{item.creditor}}</td>
@@ -430,63 +434,75 @@
                     <div class="row">
                         <div class="col-lg-6 grid-margin table-responsive">
                             <h1 class="alert alert-info text-center col-12">رکوردهای اکسل بانک</h1>
-                            <input type="text" [(ngModel)]="bankSearch"  [ngModelOptions]="{standalone: true}" placeholder="جستجو کنید"/>
-                            <table class="table table-stripped table-bordered table-compact table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>انتخاب</th>
-                                        <th>عنوان</th>
-                                        <th>بدهکار</th>
-                                        <th>بستانکار</th>
-                                        <th>کد مرجع</th>
-                                        <th>تاریخ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ng-container *ngFor="let item of bankRecords | customerFilter:bankSearch ;let i=index;">
-                                        <tr *ngIf="!bankRecords[i].isExcluded">
-                                            <td><input type="checkbox" [value]="bankRecords[i].id"
-                                                    [(ngModel)]="bankRecords[i].checked"
-                                                    [ngModelOptions]="{standalone: true}" /></td>
-                                            <td>{{item.description}}</td>
-                                            <td>{{item.debtor}}</td>
-                                            <td>{{item.creditor}}</td>
-                                            <td>{{item.code}}</td>
-                                            <td>{{item.dateTimePersian}}</td>
+                            <input type="text" [(ngModel)]="bankSearch" [ngModelOptions]="{standalone: true}"
+                                placeholder="جستجو کنید" />
+                            <div class="table-container">
+                                <table class="table table-stripped table-bordered table-compact table-hover fix-head">
+                                    <thead>
+                                        <tr>
+                                            <th class="fit">انتخاب</th>
+                                            <th class="fit">ردیف</th>
+                                            <th>عنوان</th>
+                                            <th class="fit">بدهکار</th>
+                                            <th class="fit">بستانکار</th>
+                                            <th class="fit">کد مرجع</th>
+                                            <th class="fit">تاریخ</th>
                                         </tr>
-                                    </ng-container>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container
+                                            *ngFor="let item of bankRecords | customerFilter:bankSearch ;let i=index;">
+                                            <tr *ngIf="!bankRecords[i].isExcluded">
+                                                <td class="fit"><input type="checkbox" [value]="bankRecords[i].id"
+                                                        [(ngModel)]="bankRecords[i].checked"
+                                                        [ngModelOptions]="{standalone: true}" /></td>
+                                                <td class="fit">{{i+1}}</td>
+                                                <td>{{item.description}}</td>
+                                                <td class="fit">{{item.debtor}}</td>
+                                                <td class="fit">{{item.creditor}}</td>
+                                                <td class="fit">{{item.code}}</td>
+                                                <td class="fit">{{item.dateTimePersian}}</td>
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="col-lg-6 grid-margin table-responsive">
                             <h1 class="alert alert-info text-center col-12">رکوردهای اکسل حسابداری</h1>
-                            <input type="text" [(ngModel)]="accountSearch"  [ngModelOptions]="{standalone: true}" placeholder="جستجو کنید"/>
-                            <table class="table table-stripped table-bordered table-compact table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>انتخاب</th>
-                                        <th>عنوان</th>
-                                        <th>بدهکار</th>
-                                        <th>بستانکار</th>
-                                        <th>کد مرجع</th>
-                                        <th>تاریخ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ng-container *ngFor="let item of companyRecords  | customerFilter:accountSearch ;let i=index;">
-                                        <tr *ngIf="!companyRecords[i].isExcluded">
-                                            <td><input type="checkbox" [value]="companyRecords[i].id"
-                                                    [(ngModel)]="companyRecords[i].checked"
-                                                    [ngModelOptions]="{standalone: true}" /></td>
-                                            <td>{{item.description}}</td>
-                                            <td>{{item.debtor}}</td>
-                                            <td>{{item.creditor}}</td>
-                                            <td>{{item.code}}</td>
-                                            <td>{{item.dateTimePersian}}</td>
+                            <input type="text" [(ngModel)]="accountSearch" [ngModelOptions]="{standalone: true}"
+                                placeholder="جستجو کنید" />
+                            <div class="table-container">
+                                <table class="table table-stripped table-bordered table-compact table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="fit">انتخاب</th>
+                                            <th class="fit">ردیف</th>
+                                            <th>عنوان</th>
+                                            <th class="fit">بدهکار</th>
+                                            <th class="fit">بستانکار</th>
+                                            <th class="fit">کد مرجع</th>
+                                            <th class="fit">تاریخ</th>
                                         </tr>
-                                    </ng-container>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container
+                                            *ngFor="let item of companyRecords  | customerFilter:accountSearch ;let i=index;">
+                                            <tr *ngIf="!companyRecords[i].isExcluded">
+                                                <td class="fit"><input type="checkbox" [value]="companyRecords[i].id"
+                                                        [(ngModel)]="companyRecords[i].checked"
+                                                        [ngModelOptions]="{standalone: true}" /></td>
+                                                <td class="fit">{{i+1}}</td>
+                                                <td>{{item.description}}</td>
+                                                <td class="fit">{{item.debtor}}</td>
+                                                <td class="fit">{{item.creditor}}</td>
+                                                <td class="fit">{{item.code}}</td>
+                                                <td class="fit">{{item.dateTimePersian}}</td>
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -501,8 +517,8 @@
 
 
                     <div class="row">
-                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;"
-                            style=" padding: 20px 0;background: #e7fae2;margin: 30px 0;">
+                        <div class="col-12 panel panel-primary row" *ngFor="let temp of groupList; let j = index;"style=" padding: 8px 0;background: #e7fae2;margin: 8px 0;">
+                            <span class="number">{{ j+1 }}</span>
                             <div class="col-lg-6 grid-margin table-responsive">
                                 <h1 class="alert alert-info text-center col-12">رکورد اکسل بانک</h1>
                                 <table class="table table-stripped table-bordered table-compact table-hover">
@@ -556,7 +572,7 @@
 
                             <div class="col-lg-12">
                                 <button type="submit" (click)="removeManualGroup(groupList[j].groupListRemoveId)"
-                                    class="btn btn-danger  mr-2">
+                                    class="btn btn-danger" style="font-size: 10px;margin: 0;margin-right: 0 !important;">
                                     حذف گروه
                                 </button>
                             </div>

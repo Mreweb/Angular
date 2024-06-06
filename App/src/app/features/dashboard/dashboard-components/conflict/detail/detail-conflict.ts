@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG, APP_DI_CONFIG, AppConfig } from '@app/core/config/app.config';
  
 import * as FileSaver from 'file-saver';
+declare var $: any;
 
 @Component({
   selector: 'app-home',
