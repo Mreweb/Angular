@@ -8,7 +8,7 @@ import { BrowserStorageService } from '@app/core/services/storage/browser-storag
 import { PersianCalendarService } from '@app/core/services/calendar/persian.calendar.service';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG, APP_DI_CONFIG, AppConfig } from '@app/core/config/app.config';
- 
+
 import * as FileSaver from 'file-saver';
 declare var $: any;
 
@@ -22,6 +22,11 @@ export class ConflictDetailComponent implements OnInit {
   groupList: any = [];
   groupListRemoveId: string;
   pageConflictInfo: any;
+  
+  bankRecordsSumDebtor: number;
+  bankRecordsSumCreditor: number;
+  accountRecordsSumDebtor: number;
+  accountRecordsSumCreditor: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,7 +57,6 @@ export class ConflictDetailComponent implements OnInit {
   companyFileSheetName: any;
   companyFileServerColumns: any;
 
-
   conflictColumns = new FormGroup({
     BankSheet: new FormControl('', [Validators.required]),
     BankSheetStartRow: new FormControl('', [Validators.required]),
@@ -79,6 +83,29 @@ export class ConflictDetailComponent implements OnInit {
   bankRecords: any;
   companyRecords: any;
   hasErrorInRecords: boolean = false;
+
+  orderBank: string = '';
+  reverseBank: boolean = true;
+  caseInsensitiveBank: boolean = true;
+  setBankOrder(value: string) {
+    if (this.orderBank === value) {
+      this.reverseBank = !this.reverseBank;
+    }
+    this.orderBank = value;
+  }
+
+  orderAccount: string = '';
+  reverseAccount: boolean = true;
+  caseInsensitiveAccount: boolean = true;
+  setAccountOrder(value: string) {
+    if (this.orderAccount === value) {
+      this.reverseAccount = !this.reverseAccount;
+    }
+    this.orderAccount = value;
+  }
+
+  manualGroupBankSum: any;
+  manualGroupAccountSum: any;
 
   ngOnInit(): void {
 
@@ -107,7 +134,7 @@ export class ConflictDetailComponent implements OnInit {
   download(url: any) {
 
     FileSaver.saveAs(APP_DI_CONFIG.ApiEndPoint + url, "Report.xls");
-    
+
   }
 
   resetForm() {
@@ -461,7 +488,6 @@ export class ConflictDetailComponent implements OnInit {
         this.bankRecords[i].checked = false;
         bankRecordsTemp.push(this.bankRecords[i]);
         bankRecordsIds.push(this.bankRecords[i].id);
-
       }
     }
 
@@ -492,8 +518,33 @@ export class ConflictDetailComponent implements OnInit {
         this.groupList[this.groupList.length - 1].groupListRemoveId = this.groupListRemoveId;
         this.toastr.success(data.message);
         this.blockUI.stop();
-        this.bankSearch = "";
-        this.accountSearch = "";
+        this.bankSearch = null;
+        this.accountSearch = null;
+
+        this.bankRecords = this.bankRecords.filter((s: any) => s.isExcluded != true);
+        this.companyRecords = this.companyRecords.filter((s: any) => s.isExcluded != true);
+
+
+        this.bankRecordsSumDebtor = 0;
+        this.bankRecordsSumCreditor = 0;
+        this.accountRecordsSumDebtor = 0;
+        this.accountRecordsSumCreditor = 0;
+        for (let k = 0; k < this.groupList.length; k++) {
+          for (let i = 0; i < this.groupList[k].bankRecords.length; i++) {
+            this.groupList[k].bankRecords[i].checked = false;
+            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);     
+            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;  
+            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;  
+          }
+          for (let i = 0; i < this.groupList[k].accountingRecords.length; i++) {
+            this.groupList[k].accountingRecords[i].checked = false;
+            this.groupList[k].accountingRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].accountingRecords[i].dateTime);
+            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;  
+            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;  
+          }
+        }
+
+
       },
       error: (data: any) => {
         this.toastr.error(data.message);
@@ -506,13 +557,15 @@ export class ConflictDetailComponent implements OnInit {
 
   removeManualGroup(id: any) {
 
-
     this.CustomerService.put({
       'discrepancyId': this.pageConflictId,
       'group': id
     }, null, "discrepancies/" + this.pageConflictId + "/remove-group").subscribe({
       next: (data: any) => {
-        this.initConflict();
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+        });
         this.toastr.success(data.message);
       },
       error: (data: any) => {
@@ -521,6 +574,7 @@ export class ConflictDetailComponent implements OnInit {
     });
 
   }
+
 
 
   initConflict() {
@@ -548,6 +602,8 @@ export class ConflictDetailComponent implements OnInit {
           }
         }
 
+
+        /* For Left right list that not computed yet */
         for (let i = 0; i < this.bankRecords.length; i++) {
           this.bankRecords[i].checked = false;
           this.bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.bankRecords[i].dateTime);
@@ -556,9 +612,32 @@ export class ConflictDetailComponent implements OnInit {
           this.companyRecords[i].checked = false;
           this.companyRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.companyRecords[i].dateTime);
         }
+        /* End For Left right list that not computed yet */
 
+        this.bankRecordsSumDebtor = 0;
+        this.bankRecordsSumCreditor = 0;
+        this.accountRecordsSumDebtor = 0;
+        this.accountRecordsSumCreditor = 0;
+        for (let k = 0; k < this.groupList.length; k++) {
+          for (let i = 0; i < this.groupList[k].bankRecords.length; i++) {
+            this.groupList[k].bankRecords[i].checked = false;
+            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);     
+            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;  
+            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;  
+          }
+          for (let i = 0; i < this.groupList[k].accountingRecords.length; i++) {
+            this.groupList[k].accountingRecords[i].checked = false;
+            this.groupList[k].accountingRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].accountingRecords[i].dateTime);
+            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;  
+            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;  
+          }
+        }
+ 
         this.toastr.success(data.message);
         this.blockUI.stop();
+
+
+
       },
       error: (data: any) => {
         this.toastr.error(data.message);

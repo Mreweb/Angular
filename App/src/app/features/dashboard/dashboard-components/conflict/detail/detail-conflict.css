@@ -52,6 +52,7 @@ th {
     position: sticky !important;
     top: 0 !important;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4) !important;
+    cursor: pointer;
 }
 
 .table-container {
@@ -60,14 +61,24 @@ th {
     overflow-x: hidden;
 }
 .table td {
-    font-size: 0.7125rem;
+    font-size: 0.65rem;
     width: auto !important;
     white-space: normal !important;
     text-align: center !important;
     word-break: break-word !important;
     padding: 6px !important;
+    position: relative;
 }
 
+.table td label{
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
 .panel .table thead th ,
 .panel .table thead td {
     font-size: 12px !important;
@@ -87,4 +98,25 @@ th {
     color: #fff;
     font-size: 10px;
     border-top-right-radius: 8px;
+}
+.desc-td{
+    min-width: 115px !important;
+    direction: rtl;
+    text-align: justify !important;
+    font-size: 11px;
+    line-height: 20px;
+    letter-spacing: 0px;
+}
+
+table  input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    empty-cells: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 15px;
 }

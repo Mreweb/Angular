@@ -8,7 +8,7 @@ import { BrowserStorageService } from '@app/core/services/storage/browser-storag
 import { PersianCalendarService } from '@app/core/services/calendar/persian.calendar.service';
 import { HttpClient } from '@angular/common/http';
 import { APP_CONFIG, APP_DI_CONFIG, AppConfig } from '@app/core/config/app.config';
- 
+
 @Component({
   selector: 'app-home',
   templateUrl: './add-conflict.html',
@@ -18,6 +18,12 @@ export class ConflictAddComponent implements OnInit {
   initialConflictList: any;
   groupList: any = [];
   groupListRemoveId: string;
+
+  
+  bankRecordsSumDebtor: number;
+  bankRecordsSumCreditor: number;
+  accountRecordsSumDebtor: number;
+  accountRecordsSumCreditor: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,6 +56,12 @@ export class ConflictAddComponent implements OnInit {
   companyFileServerColumns: any;
 
 
+  bankSearch: any;
+  accountSearch: any;
+  bankRecords: any;
+  companyRecords: any;
+  hasErrorInRecords: boolean = false;
+
   conflictColumns = new FormGroup({
     BankSheet: new FormControl('', [Validators.required]),
     BankSheetStartRow: new FormControl('', [Validators.required]),
@@ -71,12 +83,34 @@ export class ConflictAddComponent implements OnInit {
 
   });
 
-  bankRecords: any;
-  companyRecords: any;
-  hasErrorInRecords: boolean = false;
 
   ngOnInit(): void {
+
   }
+
+
+  orderBank: string = '';
+  reverseBank: boolean = true;
+  caseInsensitiveBank: boolean = true;
+  setBankOrder(value: string) {
+    if (this.orderBank === value) {
+      this.reverseBank = !this.reverseBank;
+    }
+    this.orderBank = value;
+  }
+
+
+  orderAccount: string = '';
+  reverseAccount: boolean = true;
+  caseInsensitiveAccount: boolean = true;
+  setAccountOrder(value: string) {
+    if (this.orderAccount === value) {
+      this.reverseAccount = !this.reverseAccount;
+    }
+    this.orderAccount = value;
+  }
+
+
 
   resetForm() {
     const currentUrl = this.router.url;
@@ -236,7 +270,7 @@ export class ConflictAddComponent implements OnInit {
       }
     }
     this.CustomerService.put({
-      "discrepancyId":  this.pageConflictId ,
+      "discrepancyId": this.pageConflictId,
       "sheetName": this.conflictColumns.controls['BankSheet'].value,
       "firstRow": this.conflictColumns.controls['BankSheetStartRow'].value,
       "description": {
@@ -286,7 +320,7 @@ export class ConflictAddComponent implements OnInit {
           }
         }
         this.CustomerService.put({
-          "discrepancyId": this.pageConflictId ,
+          "discrepancyId": this.pageConflictId,
           "sheetName": this.conflictColumns.controls['CompanySheet'].value,
           "firstRow": this.conflictColumns.controls['CompanySheetStartRow'].value,
           "description": {
@@ -319,7 +353,7 @@ export class ConflictAddComponent implements OnInit {
             this.toastr.error(data.message);
           }
         });
-    
+
         this.formStep = 4;
 
       },
@@ -344,7 +378,7 @@ export class ConflictAddComponent implements OnInit {
         for (let i = 0; i < this.bankRecords.length; i++) {
           this.bankRecords[i].checked = false;
           this.bankRecords[i].isExcluded = false;
-          
+
           this.bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.bankRecords[i].dateTime);
           if (this.bankRecords[i].recordInfo.hasError) {
             this.hasErrorInRecords = true;
@@ -383,11 +417,34 @@ export class ConflictAddComponent implements OnInit {
       }
     }
     this.CustomerService.put({
-      'discrepancyId': this.pageConflictId ,
+      'discrepancyId': this.pageConflictId,
       'items': bankRecordsTemp
     }, null, "discrepancies/" + this.pageConflictId + "/bank/records").subscribe({
       next: (data: any) => {
         this.toastr.success(data.message);
+
+        let companyRecordsTemp = [];
+        for (let i = 0; i < this.companyRecords.length; i++) {
+          if (!this.companyRecords[i].recordInfo.hasError) {
+            companyRecordsTemp.push(this.companyRecords[i]);
+          }
+        }
+        this.CustomerService.put({
+          'discrepancyId': this.pageConflictId,
+          'items': companyRecordsTemp
+        }, null, "discrepancies/" + this.pageConflictId + "/accounting/records").subscribe({
+          next: (data: any) => {
+            this.initConflict();
+            this.toastr.success(data.message);
+          },
+          error: (data: any) => {
+            this.toastr.error(data.message);
+          }
+        });
+
+
+
+
       },
       error: (data: any) => {
         this.toastr.error(data.message);
@@ -395,30 +452,12 @@ export class ConflictAddComponent implements OnInit {
     });
 
 
-    let companyRecordsTemp = [];
-    for (let i = 0; i < this.companyRecords.length; i++) {
-      if (!this.companyRecords[i].recordInfo.hasError) {
-        companyRecordsTemp.push(this.companyRecords[i]);
-      }
-    }
-    this.CustomerService.put({
-      'discrepancyId':  this.pageConflictId ,
-      'items': companyRecordsTemp
-    }, null, "discrepancies/" + this.pageConflictId + "/accounting/records").subscribe({
-      next: (data: any) => {
-        this.initConflict();
-        this.toastr.success(data.message);
-      },
-      error: (data: any) => {
-        this.toastr.error(data.message);
-      }
-    });
 
 
 
   }
 
-  addManualGroup(){
+  addManualGroup() {
 
     let bankRecordsTemp = [];
     let bankRecordsIds = [];
@@ -428,7 +467,7 @@ export class ConflictAddComponent implements OnInit {
         this.bankRecords[i].checked = false;
         bankRecordsTemp.push(this.bankRecords[i]);
         bankRecordsIds.push(this.bankRecords[i].id);
-        
+
       }
     }
 
@@ -447,16 +486,43 @@ export class ConflictAddComponent implements OnInit {
       bankRecords: bankRecordsTemp,
       accountingRecords: companyRecordsTemp,
     });
- 
+
 
     this.CustomerService.put({
-      'discrepancyId': this.pageConflictId ,
+      'discrepancyId': this.pageConflictId,
       'bankRecords': bankRecordsIds,
       'accountingRecords': companyRecordsIds,
     }, null, "discrepancies/" + this.pageConflictId + "/manual-group").subscribe({
       next: (data: any) => {
         this.groupListRemoveId = data.content;
         this.groupList[this.groupList.length - 1].groupListRemoveId = this.groupListRemoveId;
+
+        this.bankSearch = null;
+        this.accountSearch = null;
+        this.bankRecords = this.bankRecords.filter((s: any) => s.isExcluded != true);
+        this.companyRecords = this.companyRecords.filter((s: any) => s.isExcluded != true);
+
+
+        this.bankRecordsSumDebtor = 0;
+        this.bankRecordsSumCreditor = 0;
+        this.accountRecordsSumDebtor = 0;
+        this.accountRecordsSumCreditor = 0;
+        for (let k = 0; k < this.groupList.length; k++) {
+          for (let i = 0; i < this.groupList[k].bankRecords.length; i++) {
+            this.groupList[k].bankRecords[i].checked = false;
+            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);     
+            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;  
+            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;  
+          }
+          for (let i = 0; i < this.groupList[k].accountingRecords.length; i++) {
+            this.groupList[k].accountingRecords[i].checked = false;
+            this.groupList[k].accountingRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].accountingRecords[i].dateTime);
+            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;  
+            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;  
+          }
+        }
+
+
         this.toastr.success(data.message);
       },
       error: (data: any) => {
@@ -467,11 +533,12 @@ export class ConflictAddComponent implements OnInit {
   }
 
 
-  removeManualGroup(id:any){
+
+  removeManualGroup(id: any) {
 
 
     this.CustomerService.put({
-      'discrepancyId': this.pageConflictId ,
+      'discrepancyId': this.pageConflictId,
       'group': id
     }, null, "discrepancies/" + this.pageConflictId + "/remove-group").subscribe({
       next: (data: any) => {
@@ -488,28 +555,28 @@ export class ConflictAddComponent implements OnInit {
 
   initConflict() {
     this.formStep = 5;
-    this.CustomerService.get(null, null, "discrepancies/" + this.pageConflictId ).subscribe({
+    this.CustomerService.get(null, null, "discrepancies/" + this.pageConflictId).subscribe({
       next: (data: any) => {
         this.groupList = [];
         this.initialConflictList = data.content.recordGroups;
-        if (this.initialConflictList.length == 1) {
-          this.bankRecords = this.initialConflictList[0].bankRecords;         
-          this.companyRecords = this.initialConflictList[0].accountingRecords;    
-        } else{
+        if (this.initialConflictList?.length == 1) {
+          this.bankRecords = this.initialConflictList[0].bankRecords;
+          this.companyRecords = this.initialConflictList[0].accountingRecords;
+        } else {
           for (let i = 0; i < this.initialConflictList.length; i++) {
-            if(this.initialConflictList[i].group == null){
+            if (this.initialConflictList[i].group == null) {
               this.bankRecords = this.initialConflictList[i].bankRecords;
               this.companyRecords = this.initialConflictList[i].accountingRecords;
-            } else{
+            } else {
               this.groupList.push({
                 bankRecords: this.initialConflictList[i].bankRecords,
                 accountingRecords: this.initialConflictList[i].accountingRecords,
                 groupListRemoveId: this.initialConflictList[i].group
-              }); 
+              });
             }
           }
         }
-
+        /* For Left right list that not computed yet */
         for (let i = 0; i < this.bankRecords.length; i++) {
           this.bankRecords[i].checked = false;
           this.bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.bankRecords[i].dateTime);
@@ -517,6 +584,26 @@ export class ConflictAddComponent implements OnInit {
         for (let i = 0; i < this.companyRecords.length; i++) {
           this.companyRecords[i].checked = false;
           this.companyRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.companyRecords[i].dateTime);
+        }
+        /* End For Left right list that not computed yet */
+
+        this.bankRecordsSumDebtor = 0;
+        this.bankRecordsSumCreditor = 0;
+        this.accountRecordsSumDebtor = 0;
+        this.accountRecordsSumCreditor = 0;
+        for (let k = 0; k < this.groupList.length; k++) {
+          for (let i = 0; i < this.groupList[k].bankRecords.length; i++) {
+            this.groupList[k].bankRecords[i].checked = false;
+            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);     
+            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;  
+            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;  
+          }
+          for (let i = 0; i < this.groupList[k].accountingRecords.length; i++) {
+            this.groupList[k].accountingRecords[i].checked = false;
+            this.groupList[k].accountingRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].accountingRecords[i].dateTime);
+            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;  
+            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;  
+          }
         }
 
         this.toastr.success(data.message);

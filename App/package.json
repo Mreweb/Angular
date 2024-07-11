@@ -28,6 +28,7 @@
     "jquery": "^2.2.4",
     "ng-block-ui": "^4.0.1",
     "ng-persian-datepicker": "^7.0.0",
+    "ngx-order-pipe": "^3.0.0",
     "ngx-pagination": "^6.0.3",
     "ngx-skeleton-loader": "^8.1.0",
     "ngx-toastr": "^17.0.2",

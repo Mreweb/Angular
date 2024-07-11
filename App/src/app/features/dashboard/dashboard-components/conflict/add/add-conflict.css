@@ -1,7 +1,7 @@
 .dropify-wrapper .dropify-message p.dropify-error {
     color: #06cb0c;
     font-weight: 700;
-    display: block; 
+    display: block;
     font-size: 20px;
     margin: 20px 0;
 }
@@ -13,21 +13,26 @@
     color: #fff;
     display: inline-block;
     vertical-align: top;
-} 
-.breadcrumb.breadcrumb-custom .breadcrumb-item:last-child{
+}
+
+.breadcrumb.breadcrumb-custom .breadcrumb-item:last-child {
     background: #dbe3e6;
 }
+
 .breadcrumb.breadcrumb-custom .breadcrumb-item a {
-     border: 0 solid #dbe3e6; 
+    border: 0 solid #dbe3e6;
 }
+
 .breadcrumb.breadcrumb-custom .breadcrumb-item.active a:before {
     border-right-color: #29c281;
 }
+
 .breadcrumb.breadcrumb-custom .breadcrumb-item.current-step {
-    background: rgb(242 ,242, 0);
+    background: rgb(242, 242, 0);
 }
+
 .breadcrumb.breadcrumb-custom .breadcrumb-item.current-step a:before {
-    border-right-color: rgb(242 ,242, 0);
+    border-right-color: rgb(242, 242, 0);
 }
 
 .dropdown .dropdown-menu {
@@ -35,4 +40,83 @@
     font-size: 0.8125rem;
     box-shadow: 0px 1px 15px 1px rgba(230, 234, 236, 0.35);
     min-width: 340px;
+}
+
+/*table .fit {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center !important;
+}*/
+
+th {
+    position: sticky !important;
+    top: 0 !important;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4) !important;
+    cursor: pointer;
+}
+
+.table-container {
+    height: 390px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.table td {
+    font-size: 0.65rem;
+    width: auto !important;
+    white-space: normal !important;
+    text-align: center !important;
+    word-break: break-word !important;
+    padding: 6px !important;
+    position: relative;
+}
+
+.table td label{
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.panel .table thead th ,
+.panel .table thead td {
+    font-size: 12px !important;
+    padding: 4px;
+}
+.panel h1{
+    font-size: 12px !important;
+    padding: 4px;
+    margin: 0;
+}
+.number{
+    position: absolute;
+    background: black;
+    bottom: 0;
+    left: 0;
+    padding: 8px;
+    color: #fff;
+    font-size: 10px;
+    border-top-right-radius: 8px;
+}
+.desc-td{
+    min-width: 115px !important;
+    direction: rtl;
+    text-align: justify !important;
+    font-size: 11px;
+    line-height: 20px;
+    letter-spacing: 0px;
+}
+
+table  input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    empty-cells: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 15px;
 }

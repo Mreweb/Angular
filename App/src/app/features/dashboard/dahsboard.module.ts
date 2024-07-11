@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConflictDetailComponent } from './dashboard-components/conflict/detail/detail-conflict';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { SearchPipe } from '@app/core/services/search-table.pipe';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 
@@ -30,6 +31,7 @@ import { SearchPipe } from '@app/core/services/search-table.pipe';
   imports: [
     CommonModule,
     FormsModule,
+    OrderModule,
     ReactiveFormsModule, 
     NgPersianDatepickerModule,
     NgxPaginationModule,
