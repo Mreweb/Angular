@@ -22,11 +22,17 @@ export class ConflictDetailComponent implements OnInit {
   groupList: any = [];
   groupListRemoveId: string;
   pageConflictInfo: any;
-  
+
   bankRecordsSumDebtor: number;
   bankRecordsSumCreditor: number;
   accountRecordsSumDebtor: number;
   accountRecordsSumCreditor: number;
+
+
+  bankRecordsSeletedSumDebtor: number = 0;
+  bankRecordsSeletedSumCreditor: number = 0;
+  accountRecordsSeletedSumDebtor: number = 0;
+  accountRecordsSeletedSumCreditor: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -530,19 +536,53 @@ export class ConflictDetailComponent implements OnInit {
         this.accountRecordsSumDebtor = 0;
         this.accountRecordsSumCreditor = 0;
         for (let k = 0; k < this.groupList.length; k++) {
+
+          let bankMiniRecordsSumDebtor = 0;
+          let bankMiniRecordsSumCreditor = 0;
+          let accountMiniRecordsSumDebtor = 0;
+          let accountMiniRecordsSumCreditor = 0;
+
           for (let i = 0; i < this.groupList[k].bankRecords.length; i++) {
             this.groupList[k].bankRecords[i].checked = false;
-            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);     
-            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;  
-            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;  
+            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);
+            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;
+            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;
+
+
+            bankMiniRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;
+            bankMiniRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;
+
           }
+
+          this.groupList[k].bankRecords.bankMiniRecordsSumDebtor = bankMiniRecordsSumDebtor;
+          this.groupList[k].bankRecords.bankMiniRecordsSumCreditor = bankMiniRecordsSumCreditor;
+
+
+
           for (let i = 0; i < this.groupList[k].accountingRecords.length; i++) {
             this.groupList[k].accountingRecords[i].checked = false;
             this.groupList[k].accountingRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].accountingRecords[i].dateTime);
-            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;  
-            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;  
+            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;
+            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;
+
+            accountMiniRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;
+            accountMiniRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;
+
           }
+
+          this.groupList[k].accountingRecords.accountMiniRecordsSumDebtor = accountMiniRecordsSumDebtor;
+          this.groupList[k].accountingRecords.accountMiniRecordsSumCreditor = accountMiniRecordsSumCreditor;
+
+
+
         }
+
+
+
+        this.bankRecordsSeletedSumDebtor = 0;
+        this.bankRecordsSeletedSumCreditor = 0;
+        this.accountRecordsSeletedSumDebtor = 0;
+        this.accountRecordsSeletedSumCreditor = 0;
 
 
       },
@@ -587,6 +627,7 @@ export class ConflictDetailComponent implements OnInit {
         if (this.initialConflictList.length == 1) {
           this.bankRecords = this.initialConflictList[0].bankRecords;
           this.companyRecords = this.initialConflictList[0].accountingRecords;
+          this.toastr.error(data.content.title);
         } else {
           for (let i = 0; i < this.initialConflictList.length; i++) {
             if (this.initialConflictList[i].group == null) {
@@ -619,24 +660,57 @@ export class ConflictDetailComponent implements OnInit {
         this.accountRecordsSumDebtor = 0;
         this.accountRecordsSumCreditor = 0;
         for (let k = 0; k < this.groupList.length; k++) {
+
+
+
+
+          let bankMiniRecordsSumDebtor = 0;
+          let bankMiniRecordsSumCreditor = 0;
+          let accountMiniRecordsSumDebtor = 0;
+          let accountMiniRecordsSumCreditor = 0;
+
+
           for (let i = 0; i < this.groupList[k].bankRecords.length; i++) {
             this.groupList[k].bankRecords[i].checked = false;
-            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);     
-            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;  
-            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;  
+            this.groupList[k].bankRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].bankRecords[i].dateTime);
+
+            this.bankRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;
+            this.bankRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;
+
+            bankMiniRecordsSumDebtor += this.groupList[k].bankRecords[i].debtor;
+            bankMiniRecordsSumCreditor += this.groupList[k].bankRecords[i].creditor;
+
           }
+
+          this.groupList[k].bankRecords.bankMiniRecordsSumDebtor = bankMiniRecordsSumDebtor;
+          this.groupList[k].bankRecords.bankMiniRecordsSumCreditor = bankMiniRecordsSumCreditor;
+
+
+
           for (let i = 0; i < this.groupList[k].accountingRecords.length; i++) {
             this.groupList[k].accountingRecords[i].checked = false;
             this.groupList[k].accountingRecords[i].dateTimePersian = this.persianCalendarService.PersianCalendar(this.groupList[k].accountingRecords[i].dateTime);
-            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;  
-            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;  
+            this.accountRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;
+            this.accountRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;
+
+            accountMiniRecordsSumDebtor += this.groupList[k].accountingRecords[i].debtor;
+            accountMiniRecordsSumCreditor += this.groupList[k].accountingRecords[i].creditor;
+
           }
+
+          this.groupList[k].accountingRecords.accountMiniRecordsSumDebtor = accountMiniRecordsSumDebtor;
+          this.groupList[k].accountingRecords.accountMiniRecordsSumCreditor = accountMiniRecordsSumCreditor;
+
         }
- 
+
         this.toastr.success(data.message);
         this.blockUI.stop();
 
 
+        this.bankRecordsSeletedSumDebtor = 0;
+        this.bankRecordsSeletedSumCreditor = 0;
+        this.accountRecordsSeletedSumDebtor = 0;
+        this.accountRecordsSeletedSumCreditor = 0;
 
       },
       error: (data: any) => {
@@ -664,6 +738,25 @@ export class ConflictDetailComponent implements OnInit {
   }
 
 
+  autoSumSelected() {
+    this.bankRecordsSeletedSumDebtor = 0;
+    this.bankRecordsSeletedSumCreditor = 0;
+    this.accountRecordsSeletedSumDebtor = 0;
+    this.accountRecordsSeletedSumCreditor = 0;
+    for (let i = 0; i < this.bankRecords.length; i++) {
+      if (this.bankRecords[i].checked) {
+        this.bankRecordsSeletedSumDebtor += this.bankRecords[i].debtor;
+        this.bankRecordsSeletedSumCreditor += this.bankRecords[i].creditor;
+      }
+    }
+    for (let i = 0; i < this.companyRecords.length; i++) {
+      if (this.companyRecords[i].checked) {
+        this.accountRecordsSeletedSumDebtor += this.companyRecords[i].debtor;
+        this.accountRecordsSeletedSumCreditor += this.companyRecords[i].creditor;
+      }
+    }
+
+  }
 
 
 

@@ -415,6 +415,22 @@
                                 رکوردهای اکسل بانک
                                 ({{ bankRecords?.length }})
                             </h1>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr> 
+                                        <th>مجموع بدهکار انتخاب شده</th>
+                                        <th>مجموع بستانکار انتخاب شده</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{bankRecordsSeletedSumDebtor | number}}</td>
+                                        <td>{{bankRecordsSeletedSumCreditor | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
                             <input type="text" [(ngModel)]="bankSearch" [ngModelOptions]="{standalone: true}"
                                 placeholder="جستجو کنید" />
                             <div class="table-container">
@@ -436,7 +452,7 @@
                                             <tr *ngIf="!bankRecords[i].isExcluded">
                                                 <td class="fit">
                                                     <label for="{{ item.id }}" class="label">
-                                                        <input type="checkbox" id="{{ item.id }}" [value]="item.id"
+                                                        <input type="checkbox" id="{{ item.id }}" (change)="autoSumSelected()" [value]="item.id"
                                                             [(ngModel)]="item.checked"
                                                             [ngModelOptions]="{standalone: true}" />
                                                     </label>
@@ -458,6 +474,22 @@
                                 رکوردهای اکسل حسابداری
                                 ({{ companyRecords?.length }})
                             </h1>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr> 
+                                        <th>مجموع بدهکار انتخاب شده</th>
+                                        <th>مجموع بستانکار انتخاب شده</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{accountRecordsSeletedSumDebtor | number}}</td>
+                                        <td>{{accountRecordsSeletedSumCreditor | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
                             <input type="text" [(ngModel)]="accountSearch" [ngModelOptions]="{standalone: true}"
                                 placeholder="جستجو کنید" />
                             <div class="table-container">
@@ -479,7 +511,7 @@
                                             <tr *ngIf="!companyRecords[i].isExcluded">
                                                 <td class="fit">
                                                     <label for="{{ item.id }}" class="label">
-                                                        <input type="checkbox" id="{{ item.id }}" [value]="item.id"
+                                                        <input type="checkbox" id="{{ item.id }}" (change)="autoSumSelected()" [value]="item.id"
                                                             [(ngModel)]="item.checked"
                                                             [ngModelOptions]="{standalone: true}" />
                                                     </label>
@@ -574,6 +606,30 @@
                                         </ng-container>
                                     </tbody>
                                 </table>
+
+                                
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>بدهکار</th>
+                                            <th>بستانکار</th>
+                                            <th>-</th>
+                                            <th>-</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>مجموع رکورد های بانک</td>
+                                            <td>{{ temp.bankRecords.bankMiniRecordsSumDebtor | number }}</td>
+                                            <td>{{ temp.bankRecords.bankMiniRecordsSumCreditor | number }}</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
                             </div>
                             <div class="col-lg-6 grid-margin table-responsive">
                                 <h1 class="alert alert-info text-center col-12">رکورد اکسل حسابداری</h1>
@@ -599,6 +655,31 @@
                                         </ng-container>
                                     </tbody>
                                 </table>
+
+
+                                
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>بدهکار</th>
+                                            <th>بستانکار</th>
+                                            <th>-</th>
+                                            <th>-</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>مجموع رکورد های حسابداری</td>
+                                            <td>{{ temp.accountingRecords.accountMiniRecordsSumDebtor | number }}</td>
+                                            <td>{{ temp.accountingRecords.accountMiniRecordsSumCreditor | number }}</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
                             </div>
 
                             <div class="col-lg-12">

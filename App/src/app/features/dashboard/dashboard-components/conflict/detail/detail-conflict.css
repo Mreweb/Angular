@@ -120,3 +120,10 @@ table  input[type="checkbox"] {
     margin: auto;
     width: 15px;
 }
+
+thead{
+    background: #fff !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10000 !important;
+}
