@@ -486,8 +486,56 @@ export class ConflictDetailComponent implements OnInit {
   addManualGroup() {
 
     this.blockUI.start();
+
+    let SumBankCreditor = 0;
+    let SumBankDebtor = 0;
+    let SumCompanyCreditor = 0;
+    let SumCompanyDebtor = 0;
+    
     let bankRecordsTemp = [];
     let bankRecordsIds = [];
+    for (let i = 0; i < this.bankRecords.length; i++) {
+      if (this.bankRecords[i].checked) {
+        bankRecordsTemp.push(this.bankRecords[i]);
+        bankRecordsIds.push(this.bankRecords[i].id);
+        SumBankCreditor+= this.bankRecords[i].creditor;
+        SumBankDebtor+= this.bankRecords[i].debtor;
+      }
+    }
+
+    let companyRecordsTemp = [];
+    let companyRecordsIds = [];
+    for (let i = 0; i < this.companyRecords.length; i++) {
+      if (this.companyRecords[i].checked) {
+        companyRecordsTemp.push(this.companyRecords[i]);
+        companyRecordsIds.push(this.companyRecords[i].id);
+        SumCompanyCreditor+= this.companyRecords[i].creditor;
+        SumCompanyDebtor+= this.companyRecords[i].debtor;
+      }
+    }
+    
+
+    if(SumBankCreditor != SumCompanyDebtor  ){
+      this.toastr.error('مجموع بستانکار های انتخاب شده مغایرت دارد');
+      this.blockUI.stop();
+      return;
+    }
+    if(SumBankDebtor != SumCompanyCreditor){
+      this.toastr.error('مجموع بدهکار های انتخاب شده مغایرت دارد');
+      this.blockUI.stop();
+      return;
+    }
+ 
+
+    if(bankRecordsTemp.length == 0 || companyRecordsTemp.length == 0){
+      this.toastr.error('موردی انتخاب نشده است');
+      this.blockUI.stop();
+      return;
+    }
+ 
+
+    bankRecordsTemp = [];
+    bankRecordsIds = [];
     for (let i = 0; i < this.bankRecords.length; i++) {
       if (this.bankRecords[i].checked) {
         this.bankRecords[i].isExcluded = true;
@@ -497,8 +545,8 @@ export class ConflictDetailComponent implements OnInit {
       }
     }
 
-    let companyRecordsTemp = [];
-    let companyRecordsIds = [];
+    companyRecordsTemp = [];
+    companyRecordsIds = [];
     for (let i = 0; i < this.companyRecords.length; i++) {
       if (this.companyRecords[i].checked) {
         this.companyRecords[i].isExcluded = true;
@@ -507,6 +555,8 @@ export class ConflictDetailComponent implements OnInit {
         companyRecordsIds.push(this.companyRecords[i].id);
       }
     }
+
+
 
     this.groupList.push({
       bankRecords: bankRecordsTemp,
